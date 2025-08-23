@@ -3,6 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Course, CourseStatus } from '../../entities/course.entity';
 import { User, UserRole } from '../../entities/user.entity';
+import { CategoriesService } from '../categories/categories.service';
 import { CreateCourseDto } from './dto/create-course.dto';
 import { UpdateCourseDto } from './dto/update-course.dto';
 
@@ -11,18 +12,45 @@ export class CourseService {
   constructor(
     @InjectRepository(Course)
     private courseRepository: Repository<Course>,
+    private categoriesService: CategoriesService,
   ) {}
 
   async create(createCourseDto: CreateCourseDto, instructor: User): Promise<Course> {
+    // Handle category - convert string ID to number
+    let categoryId: number | undefined;
+    if (createCourseDto.category) {
+      try {
+        categoryId = parseInt(createCourseDto.category, 10);
+        // Validate that category exists
+        await this.categoriesService.findOne(categoryId);
+      } catch (error) {
+        throw new NotFoundException('Category not found');
+      }
+    }
+
+    // Create the course entity
     const course = this.courseRepository.create({
-      ...createCourseDto,
-      instructor,
+      title: createCourseDto.title,
+      description: createCourseDto.description,
+      shortDescription: createCourseDto.shortDescription,
+      thumbnailUrl: createCourseDto.thumbnailUrl,
+      previewVideoUrl: createCourseDto.previewVideoUrl,
       instructorId: instructor.id,
       objectives: JSON.stringify(createCourseDto.objectives || []),
       requirements: JSON.stringify(createCourseDto.requirements || []),
       targetAudience: JSON.stringify(createCourseDto.targetAudience || []),
-      tags: JSON.stringify(createCourseDto.tags || []),
+      level: createCourseDto.level,
       status: createCourseDto.status || CourseStatus.DRAFT,
+      price: createCourseDto.price || 0,
+      salePrice: createCourseDto.salePrice,
+      categoryId: categoryId,
+      tags: JSON.stringify(createCourseDto.tags || []),
+      totalDuration: createCourseDto.totalDuration || 0,
+      totalLectures: createCourseDto.totalLectures || 0,
+      isFree: createCourseDto.isFree || false,
+      welcomeMessage: createCourseDto.welcomeMessage,
+      congratulationsMessage: createCourseDto.congratulationsMessage,
+      allowComments: createCourseDto.allowComments !== false, // Default to true
     });
 
     return this.courseRepository.save(course);

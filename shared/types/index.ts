@@ -9,24 +9,25 @@ export enum UserRole {
 }
 
 export interface User {
-  id: string;
-  email: string;
-  firstName: string;
-  lastName: string;
-  profilePicture?: string;
-  bio?: string;
-  description?: string;
-  role: UserRole;
-  skills?: string; // JSON string of skills array
-  website?: string;
-  linkedin?: string;
-  github?: string;
-  twitter?: string;
-  isEmailVerified: boolean;
-  isActive: boolean;
-  createdAt: Date;
-  updatedAt: Date;
-}
+   id: string;
+   email: string;
+   firstName: string;
+   lastName: string;
+   profilePicture?: string;
+   bio?: string;
+   description?: string;
+   role: UserRole;
+   skills?: string; // JSON string of skills array
+   website?: string;
+   linkedin?: string;
+   github?: string;
+   twitter?: string;
+   isEmailVerified: boolean;
+   isTwoFactorEnabled: boolean; // Added to match backend entity
+   isActive: boolean;
+   createdAt: Date;
+   updatedAt: Date;
+ }
 
 // Course Types
 export enum CourseLevel {

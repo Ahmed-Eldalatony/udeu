@@ -2,6 +2,9 @@ import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateCol
 import { Exclude, Transform } from 'class-transformer';
 import { UserRole } from '../types/shared';
 
+// Re-export UserRole for other modules to import
+export { UserRole };
+
 @Entity('users')
 @Index(['email'])
 @Index(['role'])

@@ -18,7 +18,7 @@ import {
   SortAsc,
   SortDesc
 } from 'lucide-react';
-import { Course } from '../../types/shared';
+import type { Course } from '../../types/shared';
 
 interface Category {
   id: number;

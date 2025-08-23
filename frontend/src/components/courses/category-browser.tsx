@@ -5,7 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
 import { Badge } from '../ui/badge';
 import { Input } from '../ui/input';
 import { Label } from '../ui/label';
-import { Course } from '../../types/shared';
+import type { Course } from '../../types/shared';
 import {
   BookOpen,
   Users,
@@ -130,8 +130,8 @@ export const CategoryBrowser: React.FC<CategoryBrowserProps> = ({ onCourseSelect
           <Card
             key={category.id}
             className={`cursor-pointer transition-all hover:shadow-lg ${selectedCategory?.id === category.id
-                ? 'ring-2 ring-blue-500 bg-blue-50'
-                : 'hover:border-gray-300'
+              ? 'ring-2 ring-blue-500 bg-blue-50'
+              : 'hover:border-gray-300'
               }`}
             onClick={() => handleCategorySelect(category)}
           >

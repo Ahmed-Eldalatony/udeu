@@ -1,4 +1,4 @@
-// Frontend Shared Types (Copied from shared/types/index.ts for frontend compatibility)
+// Frontend Shared Types (Synchronized with shared/types/index.ts)
 
 // Enums
 export enum UserRole {
@@ -71,24 +71,25 @@ export enum Currency {
 
 // Interfaces
 export interface User {
-  id: string;
-  email: string;
-  firstName: string;
-  lastName: string;
-  profilePicture?: string;
-  bio?: string;
-  description?: string;
-  role: UserRole;
-  skills?: string[];
-  website?: string;
-  linkedin?: string;
-  github?: string;
-  twitter?: string;
-  isEmailVerified: boolean;
-  isActive: boolean;
-  createdAt: Date;
-  updatedAt: Date;
-}
+   id: string;
+   email: string;
+   firstName: string;
+   lastName: string;
+   profilePicture?: string;
+   bio?: string;
+   description?: string;
+   role: UserRole;
+   skills?: string; // JSON string of skills array
+   website?: string;
+   linkedin?: string;
+   github?: string;
+   twitter?: string;
+   isEmailVerified: boolean;
+   isTwoFactorEnabled: boolean; // Missing from shared types but present in backend entity
+   isActive: boolean;
+   createdAt: Date;
+   updatedAt: Date;
+ }
 
 export interface Course {
   id: string;
