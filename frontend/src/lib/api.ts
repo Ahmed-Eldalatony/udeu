@@ -152,6 +152,13 @@ export const coursesAPI = {
     featured?: boolean;
     limit?: number;
     offset?: number;
+    priceMin?: number;
+    priceMax?: number;
+    durationMin?: number;
+    durationMax?: number;
+    ratingMin?: number;
+    sortBy?: 'price' | 'rating' | 'duration' | 'students' | 'createdAt';
+    sortOrder?: 'asc' | 'desc';
   }): Promise<ApiResponse<Course[]>> => {
     const queryString = params ? new URLSearchParams(params as any).toString() : '';
     return apiService.get<Course[]>(`/courses${queryString ? `?${queryString}` : ''}`);
@@ -343,6 +350,42 @@ export const categoriesAPI = {
 
   getSubcategories: async (id: string): Promise<ApiResponse<any[]>> => {
     return apiService.get<any[]>(`/categories/${id}/subcategories`);
+  },
+};
+
+// Reviews API calls
+export const reviewsAPI = {
+  getAll: async (params?: any): Promise<ApiResponse<any[]>> => {
+    const queryString = params ? new URLSearchParams(params as any).toString() : '';
+    return apiService.get<any[]>(`/reviews${queryString ? `?${queryString}` : ''}`);
+  },
+
+  getByCourse: async (courseId: string): Promise<ApiResponse<any[]>> => {
+    return apiService.get<any[]>(`/reviews/course/${courseId}`);
+  },
+
+  getByUser: async (userId: string): Promise<ApiResponse<any[]>> => {
+    return apiService.get<any[]>(`/reviews/user/${userId}`);
+  },
+
+  create: async (reviewData: any): Promise<ApiResponse<any>> => {
+    return apiService.post<any>('/reviews', reviewData);
+  },
+
+  update: async (id: string, reviewData: any): Promise<ApiResponse<any>> => {
+    return apiService.put<any>(`/reviews/${id}`, reviewData);
+  },
+
+  delete: async (id: string): Promise<ApiResponse<void>> => {
+    return apiService.delete<void>(`/reviews/${id}`);
+  },
+
+  vote: async (id: string, type: 'helpful' | 'unhelpful'): Promise<ApiResponse<any>> => {
+    return apiService.post<any>(`/reviews/${id}/vote`, { type });
+  },
+
+  getCourseStats: async (courseId: string): Promise<ApiResponse<any>> => {
+    return apiService.get<any>(`/reviews/course/${courseId}/stats`);
   },
 };
 
