@@ -1,35 +1,114 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { Routes, Route, BrowserRouter } from 'react-router-dom';
+import { AuthProvider } from './contexts/AuthContext';
+import { CartProvider } from './contexts/CartContext';
+import { GlobalStateProvider } from './contexts/GlobalStateContext';
+import { LoadingProvider } from './contexts/LoadingContext';
+import { GlobalLoadingOverlay } from './components/ui/global-loading-overlay';
+import { ProtectedRoute } from './components/auth/ProtectedRoute';
+import { AdvancedErrorBoundary, RouteErrorBoundary, ErrorTestComponent } from './components/error-boundary';
+import { LogoutTestComponent } from './components/auth/LogoutTestComponent';
+import { Homepage } from './components/pages/homepage';
+import { LoginPage } from './components/pages/login-page';
+import { RegisterPage } from './components/pages/register-page';
+import { CoursesPage } from './components/pages/courses-page';
+import { CourseDetailsPage } from './components/pages/course-details-page';
+import { DashboardPage } from './components/pages/dashboard-page';
+import { InstructorDashboard } from './components/pages/instructor-dashboard';
+import { CartPage } from './components/pages/cart-page';
+import { NotFoundPage } from './components/pages/not-found-page';
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <BrowserRouter>
+      <AdvancedErrorBoundary
+        enableReporting={true}
+        showDetails={process.env.NODE_ENV === 'development'}
+        maxRetryAttempts={3}
+        resetTimeout={30000}
+        onError={(error, errorInfo, errorType) => {
+          // Custom error handling - could send to analytics service
+          console.error('App-level error:', { error, errorInfo, errorType });
+        }}
+      >
+        <LoadingProvider>
+          <GlobalStateProvider>
+            <AuthProvider>
+              <CartProvider>
+                <GlobalLoadingOverlay />
+                <div className="min-h-screen bg-gray-50">
+                  <Routes>
+                    <Route path="/" element={
+                      <RouteErrorBoundary route="Homepage">
+                        <Homepage />
+                      </RouteErrorBoundary>
+                    } />
+                    <Route path="/login" element={
+                      <ProtectedRoute requireAuth={false}>
+                        <RouteErrorBoundary route="Login">
+                          <LoginPage />
+                        </RouteErrorBoundary>
+                      </ProtectedRoute>
+                    } />
+                    <Route path="/register" element={
+                      <ProtectedRoute requireAuth={false}>
+                        <RouteErrorBoundary route="Register">
+                          <RegisterPage />
+                        </RouteErrorBoundary>
+                      </ProtectedRoute>
+                    } />
+                    <Route path="/courses" element={
+                      <RouteErrorBoundary route="Courses">
+                        <CoursesPage />
+                      </RouteErrorBoundary>
+                    } />
+                    <Route path="/courses/:id" element={
+                      <RouteErrorBoundary route="CourseDetails">
+                        <CourseDetailsPage />
+                      </RouteErrorBoundary>
+                    } />
+                    <Route path="/cart" element={
+                      <RouteErrorBoundary route="Cart">
+                        <CartPage />
+                      </RouteErrorBoundary>
+                    } />
+                    <Route path="/dashboard" element={
+                      <ProtectedRoute>
+                        <RouteErrorBoundary route="Dashboard">
+                          <DashboardPage />
+                        </RouteErrorBoundary>
+                      </ProtectedRoute>
+                    } />
+                    <Route path="/instructor-dashboard" element={
+                      <ProtectedRoute requireInstructor={true}>
+                        <RouteErrorBoundary route="InstructorDashboard">
+                          <InstructorDashboard />
+                        </RouteErrorBoundary>
+                      </ProtectedRoute>
+                    } />
+                    <Route path="/error-test" element={
+                      <RouteErrorBoundary route="ErrorTest">
+                        <ErrorTestComponent />
+                      </RouteErrorBoundary>
+                    } />
+                    <Route path="/logout-test" element={
+                      <RouteErrorBoundary route="LogoutTest">
+                        <LogoutTestComponent />
+                      </RouteErrorBoundary>
+                    } />
+                    <Route path="*" element={
+                      <RouteErrorBoundary route="NotFound">
+                        <NotFoundPage />
+                      </RouteErrorBoundary>
+                    } />
+                  </Routes>
+                </div>
+              </CartProvider>
+            </AuthProvider>
+          </GlobalStateProvider>
+        </LoadingProvider>
+      </AdvancedErrorBoundary>
+    </BrowserRouter>
+  );
 }
 
-export default App
+export default App;

@@ -8,3 +8,416 @@ You are using Node.js 22.11.0. Vite requires Node.js version 20.19+ or 22.12+. P
 
   ➜  Local:   http://localhost:5173/
   ➜  Network: use --host to expose
+12:39:12 AM [vite] (client) hmr update /src/App.tsx
+12:39:15 AM [vite] Internal server error: Failed to resolve import "./components/pages/courses-page" from "src/App.tsx". Does the file exist?
+  Plugin: vite:import-analysis
+  File: /home/dalton/dev/udeu/frontend/src/App.tsx:4:28
+  18 |  import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+  19 |  import { Homepage } from "./components/pages/homepage";
+  20 |  import { CoursesPage } from "./components/pages/courses-page";
+     |                               ^
+  21 |  import { CourseDetailsPage } from "./components/pages/course-details-page";
+  22 |  import { LoginPage } from "./components/pages/login-page";
+      at TransformPluginContext._formatLog (file:///home/dalton/dev/udeu/frontend/node_modules/.pnpm/vite@7.1.3/node_modules/vite/dist/node/chunks/dep-Bj7gA1-0.js:31422:43)
+      at TransformPluginContext.error (file:///home/dalton/dev/udeu/frontend/node_modules/.pnpm/vite@7.1.3/node_modules/vite/dist/node/chunks/dep-Bj7gA1-0.js:31419:14)
+      at normalizeUrl (file:///home/dalton/dev/udeu/frontend/node_modules/.pnpm/vite@7.1.3/node_modules/vite/dist/node/chunks/dep-Bj7gA1-0.js:29891:18)
+      at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+      at async file:///home/dalton/dev/udeu/frontend/node_modules/.pnpm/vite@7.1.3/node_modules/vite/dist/node/chunks/dep-Bj7gA1-0.js:29949:32
+      at async Promise.all (index 6)
+      at async TransformPluginContext.transform (file:///home/dalton/dev/udeu/frontend/node_modules/.pnpm/vite@7.1.3/node_modules/vite/dist/node/chunks/dep-Bj7gA1-0.js:29917:4)
+      at async EnvironmentPluginContainer.transform (file:///home/dalton/dev/udeu/frontend/node_modules/.pnpm/vite@7.1.3/node_modules/vite/dist/node/chunks/dep-Bj7gA1-0.js:31220:14)
+      at async loadAndTransform (file:///home/dalton/dev/udeu/frontend/node_modules/.pnpm/vite@7.1.3/node_modules/vite/dist/node/chunks/dep-Bj7gA1-0.js:26307:26)
+      at async viteTransformMiddleware (file:///home/dalton/dev/udeu/frontend/node_modules/.pnpm/vite@7.1.3/node_modules/vite/dist/node/chunks/dep-Bj7gA1-0.js:27392:20)
+12:39:19 AM [vite] (client) ✨ new dependencies optimized: react-router-dom, lucide-react, @radix-ui/react-slot, class-variance-authority, clsx, tailwind-merge
+12:39:19 AM [vite] (client) ✨ optimized dependencies changed. reloading
+12:39:19 AM [vite] (client) Pre-transform error: Failed to resolve import "./components/pages/courses-page" from "src/App.tsx". Does the file exist?
+  Plugin: vite:import-analysis
+  File: /home/dalton/dev/udeu/frontend/src/App.tsx:4:28
+  18 |  import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+  19 |  import { Homepage } from "./components/pages/homepage";
+  20 |  import { CoursesPage } from "./components/pages/courses-page";
+     |                               ^
+  21 |  import { CourseDetailsPage } from "./components/pages/course-details-page";
+  22 |  import { LoginPage } from "./components/pages/login-page";
+12:39:20 AM [vite] Internal server error: Failed to resolve import "./components/pages/courses-page" from "src/App.tsx". Does the file exist?
+  Plugin: vite:import-analysis
+  File: /home/dalton/dev/udeu/frontend/src/App.tsx:4:28
+  18 |  import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+  19 |  import { Homepage } from "./components/pages/homepage";
+  20 |  import { CoursesPage } from "./components/pages/courses-page";
+     |                               ^
+  21 |  import { CourseDetailsPage } from "./components/pages/course-details-page";
+  22 |  import { LoginPage } from "./components/pages/login-page";
+      at TransformPluginContext._formatLog (file:///home/dalton/dev/udeu/frontend/node_modules/.pnpm/vite@7.1.3/node_modules/vite/dist/node/chunks/dep-Bj7gA1-0.js:31422:43)
+      at TransformPluginContext.error (file:///home/dalton/dev/udeu/frontend/node_modules/.pnpm/vite@7.1.3/node_modules/vite/dist/node/chunks/dep-Bj7gA1-0.js:31419:14)
+      at normalizeUrl (file:///home/dalton/dev/udeu/frontend/node_modules/.pnpm/vite@7.1.3/node_modules/vite/dist/node/chunks/dep-Bj7gA1-0.js:29891:18)
+      at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+      at async file:///home/dalton/dev/udeu/frontend/node_modules/.pnpm/vite@7.1.3/node_modules/vite/dist/node/chunks/dep-Bj7gA1-0.js:29949:32
+      at async Promise.all (index 6)
+      at async TransformPluginContext.transform (file:///home/dalton/dev/udeu/frontend/node_modules/.pnpm/vite@7.1.3/node_modules/vite/dist/node/chunks/dep-Bj7gA1-0.js:29917:4)
+      at async EnvironmentPluginContainer.transform (file:///home/dalton/dev/udeu/frontend/node_modules/.pnpm/vite@7.1.3/node_modules/vite/dist/node/chunks/dep-Bj7gA1-0.js:31220:14)
+      at async loadAndTransform (file:///home/dalton/dev/udeu/frontend/node_modules/.pnpm/vite@7.1.3/node_modules/vite/dist/node/chunks/dep-Bj7gA1-0.js:26307:26)
+      at async viteTransformMiddleware (file:///home/dalton/dev/udeu/frontend/node_modules/.pnpm/vite@7.1.3/node_modules/vite/dist/node/chunks/dep-Bj7gA1-0.js:27392:20)
+12:39:30 AM [vite] (client) page reload src/components/pages/courses-page.tsx
+12:39:32 AM [vite] Internal server error: Failed to resolve import "./components/pages/course-details-page" from "src/App.tsx". Does the file exist?
+  Plugin: vite:import-analysis
+  File: /home/dalton/dev/udeu/frontend/src/App.tsx:5:34
+  19 |  import { Homepage } from "./components/pages/homepage";
+  20 |  import { CoursesPage } from "./components/pages/courses-page";
+  21 |  import { CourseDetailsPage } from "./components/pages/course-details-page";
+     |                                     ^
+  22 |  import { LoginPage } from "./components/pages/login-page";
+  23 |  import { RegisterPage } from "./components/pages/register-page";
+      at TransformPluginContext._formatLog (file:///home/dalton/dev/udeu/frontend/node_modules/.pnpm/vite@7.1.3/node_modules/vite/dist/node/chunks/dep-Bj7gA1-0.js:31422:43)
+      at TransformPluginContext.error (file:///home/dalton/dev/udeu/frontend/node_modules/.pnpm/vite@7.1.3/node_modules/vite/dist/node/chunks/dep-Bj7gA1-0.js:31419:14)
+      at normalizeUrl (file:///home/dalton/dev/udeu/frontend/node_modules/.pnpm/vite@7.1.3/node_modules/vite/dist/node/chunks/dep-Bj7gA1-0.js:29891:18)
+      at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+      at async file:///home/dalton/dev/udeu/frontend/node_modules/.pnpm/vite@7.1.3/node_modules/vite/dist/node/chunks/dep-Bj7gA1-0.js:29949:32
+      at async Promise.all (index 7)
+      at async TransformPluginContext.transform (file:///home/dalton/dev/udeu/frontend/node_modules/.pnpm/vite@7.1.3/node_modules/vite/dist/node/chunks/dep-Bj7gA1-0.js:29917:4)
+      at async EnvironmentPluginContainer.transform (file:///home/dalton/dev/udeu/frontend/node_modules/.pnpm/vite@7.1.3/node_modules/vite/dist/node/chunks/dep-Bj7gA1-0.js:31220:14)
+      at async loadAndTransform (file:///home/dalton/dev/udeu/frontend/node_modules/.pnpm/vite@7.1.3/node_modules/vite/dist/node/chunks/dep-Bj7gA1-0.js:26307:26)
+12:39:32 AM [vite] (client) Pre-transform error: Failed to resolve import "./components/pages/course-details-page" from "src/App.tsx". Does the file exist?
+  Plugin: vite:import-analysis
+  File: /home/dalton/dev/udeu/frontend/src/App.tsx:5:34
+  19 |  import { Homepage } from "./components/pages/homepage";
+  20 |  import { CoursesPage } from "./components/pages/courses-page";
+  21 |  import { CourseDetailsPage } from "./components/pages/course-details-page";
+     |                                     ^
+  22 |  import { LoginPage } from "./components/pages/login-page";
+  23 |  import { RegisterPage } from "./components/pages/register-page";
+12:40:01 AM [vite] (client) page reload src/components/pages/courses-page.tsx
+12:40:02 AM [vite] Internal server error: Failed to resolve import "./components/pages/course-details-page" from "src/App.tsx". Does the file exist?
+  Plugin: vite:import-analysis
+  File: /home/dalton/dev/udeu/frontend/src/App.tsx:5:34
+  19 |  import { Homepage } from "./components/pages/homepage";
+  20 |  import { CoursesPage } from "./components/pages/courses-page";
+  21 |  import { CourseDetailsPage } from "./components/pages/course-details-page";
+     |                                     ^
+  22 |  import { LoginPage } from "./components/pages/login-page";
+  23 |  import { RegisterPage } from "./components/pages/register-page";
+      at TransformPluginContext._formatLog (file:///home/dalton/dev/udeu/frontend/node_modules/.pnpm/vite@7.1.3/node_modules/vite/dist/node/chunks/dep-Bj7gA1-0.js:31422:43)
+      at TransformPluginContext.error (file:///home/dalton/dev/udeu/frontend/node_modules/.pnpm/vite@7.1.3/node_modules/vite/dist/node/chunks/dep-Bj7gA1-0.js:31419:14)
+      at normalizeUrl (file:///home/dalton/dev/udeu/frontend/node_modules/.pnpm/vite@7.1.3/node_modules/vite/dist/node/chunks/dep-Bj7gA1-0.js:29891:18)
+      at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+      at async file:///home/dalton/dev/udeu/frontend/node_modules/.pnpm/vite@7.1.3/node_modules/vite/dist/node/chunks/dep-Bj7gA1-0.js:29949:32
+      at async Promise.all (index 7)
+      at async TransformPluginContext.transform (file:///home/dalton/dev/udeu/frontend/node_modules/.pnpm/vite@7.1.3/node_modules/vite/dist/node/chunks/dep-Bj7gA1-0.js:29917:4)
+      at async EnvironmentPluginContainer.transform (file:///home/dalton/dev/udeu/frontend/node_modules/.pnpm/vite@7.1.3/node_modules/vite/dist/node/chunks/dep-Bj7gA1-0.js:31220:14)
+      at async loadAndTransform (file:///home/dalton/dev/udeu/frontend/node_modules/.pnpm/vite@7.1.3/node_modules/vite/dist/node/chunks/dep-Bj7gA1-0.js:26307:26)
+      at async viteTransformMiddleware (file:///home/dalton/dev/udeu/frontend/node_modules/.pnpm/vite@7.1.3/node_modules/vite/dist/node/chunks/dep-Bj7gA1-0.js:27392:20)
+12:40:21 AM [vite] (client) page reload src/components/pages/course-details-page.tsx
+12:40:21 AM [vite] (client) Pre-transform error: Failed to resolve import "./components/pages/login-page" from "src/App.tsx". Does the file exist?
+  Plugin: vite:import-analysis
+  File: /home/dalton/dev/udeu/frontend/src/App.tsx:6:26
+  20 |  import { CoursesPage } from "./components/pages/courses-page";
+  21 |  import { CourseDetailsPage } from "./components/pages/course-details-page";
+  22 |  import { LoginPage } from "./components/pages/login-page";
+     |                             ^
+  23 |  import { RegisterPage } from "./components/pages/register-page";
+  24 |  import { DashboardPage } from "./components/pages/dashboard-page";
+12:40:22 AM [vite] Internal server error: Failed to resolve import "./components/pages/login-page" from "src/App.tsx". Does the file exist?
+  Plugin: vite:import-analysis
+  File: /home/dalton/dev/udeu/frontend/src/App.tsx:6:26
+  20 |  import { CoursesPage } from "./components/pages/courses-page";
+  21 |  import { CourseDetailsPage } from "./components/pages/course-details-page";
+  22 |  import { LoginPage } from "./components/pages/login-page";
+     |                             ^
+  23 |  import { RegisterPage } from "./components/pages/register-page";
+  24 |  import { DashboardPage } from "./components/pages/dashboard-page";
+      at TransformPluginContext._formatLog (file:///home/dalton/dev/udeu/frontend/node_modules/.pnpm/vite@7.1.3/node_modules/vite/dist/node/chunks/dep-Bj7gA1-0.js:31422:43)
+      at TransformPluginContext.error (file:///home/dalton/dev/udeu/frontend/node_modules/.pnpm/vite@7.1.3/node_modules/vite/dist/node/chunks/dep-Bj7gA1-0.js:31419:14)
+      at normalizeUrl (file:///home/dalton/dev/udeu/frontend/node_modules/.pnpm/vite@7.1.3/node_modules/vite/dist/node/chunks/dep-Bj7gA1-0.js:29891:18)
+      at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+      at async file:///home/dalton/dev/udeu/frontend/node_modules/.pnpm/vite@7.1.3/node_modules/vite/dist/node/chunks/dep-Bj7gA1-0.js:29949:32
+      at async Promise.all (index 8)
+      at async TransformPluginContext.transform (file:///home/dalton/dev/udeu/frontend/node_modules/.pnpm/vite@7.1.3/node_modules/vite/dist/node/chunks/dep-Bj7gA1-0.js:29917:4)
+      at async EnvironmentPluginContainer.transform (file:///home/dalton/dev/udeu/frontend/node_modules/.pnpm/vite@7.1.3/node_modules/vite/dist/node/chunks/dep-Bj7gA1-0.js:31220:14)
+      at async loadAndTransform (file:///home/dalton/dev/udeu/frontend/node_modules/.pnpm/vite@7.1.3/node_modules/vite/dist/node/chunks/dep-Bj7gA1-0.js:26307:26)
+      at async viteTransformMiddleware (file:///home/dalton/dev/udeu/frontend/node_modules/.pnpm/vite@7.1.3/node_modules/vite/dist/node/chunks/dep-Bj7gA1-0.js:27392:20)
+12:41:12 AM [vite] (client) page reload src/components/pages/course-details-page.tsx
+12:41:14 AM [vite] Internal server error: Failed to resolve import "./components/pages/login-page" from "src/App.tsx". Does the file exist?
+  Plugin: vite:import-analysis
+  File: /home/dalton/dev/udeu/frontend/src/App.tsx:6:26
+  20 |  import { CoursesPage } from "./components/pages/courses-page";
+  21 |  import { CourseDetailsPage } from "./components/pages/course-details-page";
+  22 |  import { LoginPage } from "./components/pages/login-page";
+     |                             ^
+  23 |  import { RegisterPage } from "./components/pages/register-page";
+  24 |  import { DashboardPage } from "./components/pages/dashboard-page";
+      at TransformPluginContext._formatLog (file:///home/dalton/dev/udeu/frontend/node_modules/.pnpm/vite@7.1.3/node_modules/vite/dist/node/chunks/dep-Bj7gA1-0.js:31422:43)
+      at TransformPluginContext.error (file:///home/dalton/dev/udeu/frontend/node_modules/.pnpm/vite@7.1.3/node_modules/vite/dist/node/chunks/dep-Bj7gA1-0.js:31419:14)
+      at normalizeUrl (file:///home/dalton/dev/udeu/frontend/node_modules/.pnpm/vite@7.1.3/node_modules/vite/dist/node/chunks/dep-Bj7gA1-0.js:29891:18)
+      at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+      at async file:///home/dalton/dev/udeu/frontend/node_modules/.pnpm/vite@7.1.3/node_modules/vite/dist/node/chunks/dep-Bj7gA1-0.js:29949:32
+      at async Promise.all (index 8)
+      at async TransformPluginContext.transform (file:///home/dalton/dev/udeu/frontend/node_modules/.pnpm/vite@7.1.3/node_modules/vite/dist/node/chunks/dep-Bj7gA1-0.js:29917:4)
+      at async EnvironmentPluginContainer.transform (file:///home/dalton/dev/udeu/frontend/node_modules/.pnpm/vite@7.1.3/node_modules/vite/dist/node/chunks/dep-Bj7gA1-0.js:31220:14)
+      at async loadAndTransform (file:///home/dalton/dev/udeu/frontend/node_modules/.pnpm/vite@7.1.3/node_modules/vite/dist/node/chunks/dep-Bj7gA1-0.js:26307:26)
+      at async viteTransformMiddleware (file:///home/dalton/dev/udeu/frontend/node_modules/.pnpm/vite@7.1.3/node_modules/vite/dist/node/chunks/dep-Bj7gA1-0.js:27392:20)
+12:41:21 AM [vite] (client) page reload src/components/pages/login-page.tsx
+12:41:22 AM [vite] (client) Pre-transform error: Failed to resolve import "./components/pages/register-page" from "src/App.tsx". Does the file exist?
+  Plugin: vite:import-analysis
+  File: /home/dalton/dev/udeu/frontend/src/App.tsx:7:29
+  21 |  import { CourseDetailsPage } from "./components/pages/course-details-page";
+  22 |  import { LoginPage } from "./components/pages/login-page";
+  23 |  import { RegisterPage } from "./components/pages/register-page";
+     |                                ^
+  24 |  import { DashboardPage } from "./components/pages/dashboard-page";
+  25 |  import { InstructorDashboard } from "./components/pages/instructor-dashboard";
+12:41:23 AM [vite] Internal server error: Failed to resolve import "./components/pages/register-page" from "src/App.tsx". Does the file exist?
+  Plugin: vite:import-analysis
+  File: /home/dalton/dev/udeu/frontend/src/App.tsx:7:29
+  21 |  import { CourseDetailsPage } from "./components/pages/course-details-page";
+  22 |  import { LoginPage } from "./components/pages/login-page";
+  23 |  import { RegisterPage } from "./components/pages/register-page";
+     |                                ^
+  24 |  import { DashboardPage } from "./components/pages/dashboard-page";
+  25 |  import { InstructorDashboard } from "./components/pages/instructor-dashboard";
+      at TransformPluginContext._formatLog (file:///home/dalton/dev/udeu/frontend/node_modules/.pnpm/vite@7.1.3/node_modules/vite/dist/node/chunks/dep-Bj7gA1-0.js:31422:43)
+      at TransformPluginContext.error (file:///home/dalton/dev/udeu/frontend/node_modules/.pnpm/vite@7.1.3/node_modules/vite/dist/node/chunks/dep-Bj7gA1-0.js:31419:14)
+      at normalizeUrl (file:///home/dalton/dev/udeu/frontend/node_modules/.pnpm/vite@7.1.3/node_modules/vite/dist/node/chunks/dep-Bj7gA1-0.js:29891:18)
+      at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+      at async file:///home/dalton/dev/udeu/frontend/node_modules/.pnpm/vite@7.1.3/node_modules/vite/dist/node/chunks/dep-Bj7gA1-0.js:29949:32
+      at async Promise.all (index 9)
+      at async TransformPluginContext.transform (file:///home/dalton/dev/udeu/frontend/node_modules/.pnpm/vite@7.1.3/node_modules/vite/dist/node/chunks/dep-Bj7gA1-0.js:29917:4)
+      at async EnvironmentPluginContainer.transform (file:///home/dalton/dev/udeu/frontend/node_modules/.pnpm/vite@7.1.3/node_modules/vite/dist/node/chunks/dep-Bj7gA1-0.js:31220:14)
+      at async loadAndTransform (file:///home/dalton/dev/udeu/frontend/node_modules/.pnpm/vite@7.1.3/node_modules/vite/dist/node/chunks/dep-Bj7gA1-0.js:26307:26)
+      at async viteTransformMiddleware (file:///home/dalton/dev/udeu/frontend/node_modules/.pnpm/vite@7.1.3/node_modules/vite/dist/node/chunks/dep-Bj7gA1-0.js:27392:20)
+12:41:39 AM [vite] (client) page reload src/components/pages/login-page.tsx
+12:41:40 AM [vite] Internal server error: Failed to resolve import "./components/pages/register-page" from "src/App.tsx". Does the file exist?
+  Plugin: vite:import-analysis
+  File: /home/dalton/dev/udeu/frontend/src/App.tsx:7:29
+  21 |  import { CourseDetailsPage } from "./components/pages/course-details-page";
+  22 |  import { LoginPage } from "./components/pages/login-page";
+  23 |  import { RegisterPage } from "./components/pages/register-page";
+     |                                ^
+  24 |  import { DashboardPage } from "./components/pages/dashboard-page";
+  25 |  import { InstructorDashboard } from "./components/pages/instructor-dashboard";
+      at TransformPluginContext._formatLog (file:///home/dalton/dev/udeu/frontend/node_modules/.pnpm/vite@7.1.3/node_modules/vite/dist/node/chunks/dep-Bj7gA1-0.js:31422:43)
+      at TransformPluginContext.error (file:///home/dalton/dev/udeu/frontend/node_modules/.pnpm/vite@7.1.3/node_modules/vite/dist/node/chunks/dep-Bj7gA1-0.js:31419:14)
+      at normalizeUrl (file:///home/dalton/dev/udeu/frontend/node_modules/.pnpm/vite@7.1.3/node_modules/vite/dist/node/chunks/dep-Bj7gA1-0.js:29891:18)
+      at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+      at async file:///home/dalton/dev/udeu/frontend/node_modules/.pnpm/vite@7.1.3/node_modules/vite/dist/node/chunks/dep-Bj7gA1-0.js:29949:32
+      at async Promise.all (index 9)
+      at async TransformPluginContext.transform (file:///home/dalton/dev/udeu/frontend/node_modules/.pnpm/vite@7.1.3/node_modules/vite/dist/node/chunks/dep-Bj7gA1-0.js:29917:4)
+      at async EnvironmentPluginContainer.transform (file:///home/dalton/dev/udeu/frontend/node_modules/.pnpm/vite@7.1.3/node_modules/vite/dist/node/chunks/dep-Bj7gA1-0.js:31220:14)
+      at async loadAndTransform (file:///home/dalton/dev/udeu/frontend/node_modules/.pnpm/vite@7.1.3/node_modules/vite/dist/node/chunks/dep-Bj7gA1-0.js:26307:26)
+      at async viteTransformMiddleware (file:///home/dalton/dev/udeu/frontend/node_modules/.pnpm/vite@7.1.3/node_modules/vite/dist/node/chunks/dep-Bj7gA1-0.js:27392:20)
+12:41:49 AM [vite] (client) page reload src/components/pages/register-page.tsx
+12:41:50 AM [vite] Internal server error: Failed to resolve import "./components/pages/dashboard-page" from "src/App.tsx". Does the file exist?
+  Plugin: vite:import-analysis
+  File: /home/dalton/dev/udeu/frontend/src/App.tsx:8:30
+  22 |  import { LoginPage } from "./components/pages/login-page";
+  23 |  import { RegisterPage } from "./components/pages/register-page";
+  24 |  import { DashboardPage } from "./components/pages/dashboard-page";
+     |                                 ^
+  25 |  import { InstructorDashboard } from "./components/pages/instructor-dashboard";
+  26 |  import { CartPage } from "./components/pages/cart-page";
+      at TransformPluginContext._formatLog (file:///home/dalton/dev/udeu/frontend/node_modules/.pnpm/vite@7.1.3/node_modules/vite/dist/node/chunks/dep-Bj7gA1-0.js:31422:43)
+      at TransformPluginContext.error (file:///home/dalton/dev/udeu/frontend/node_modules/.pnpm/vite@7.1.3/node_modules/vite/dist/node/chunks/dep-Bj7gA1-0.js:31419:14)
+      at normalizeUrl (file:///home/dalton/dev/udeu/frontend/node_modules/.pnpm/vite@7.1.3/node_modules/vite/dist/node/chunks/dep-Bj7gA1-0.js:29891:18)
+      at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+      at async file:///home/dalton/dev/udeu/frontend/node_modules/.pnpm/vite@7.1.3/node_modules/vite/dist/node/chunks/dep-Bj7gA1-0.js:29949:32
+      at async Promise.all (index 10)
+      at async TransformPluginContext.transform (file:///home/dalton/dev/udeu/frontend/node_modules/.pnpm/vite@7.1.3/node_modules/vite/dist/node/chunks/dep-Bj7gA1-0.js:29917:4)
+      at async EnvironmentPluginContainer.transform (file:///home/dalton/dev/udeu/frontend/node_modules/.pnpm/vite@7.1.3/node_modules/vite/dist/node/chunks/dep-Bj7gA1-0.js:31220:14)
+      at async loadAndTransform (file:///home/dalton/dev/udeu/frontend/node_modules/.pnpm/vite@7.1.3/node_modules/vite/dist/node/chunks/dep-Bj7gA1-0.js:26307:26)
+12:41:50 AM [vite] (client) Pre-transform error: Failed to resolve import "./components/pages/dashboard-page" from "src/App.tsx". Does the file exist?
+  Plugin: vite:import-analysis
+  File: /home/dalton/dev/udeu/frontend/src/App.tsx:8:30
+  22 |  import { LoginPage } from "./components/pages/login-page";
+  23 |  import { RegisterPage } from "./components/pages/register-page";
+  24 |  import { DashboardPage } from "./components/pages/dashboard-page";
+     |                                 ^
+  25 |  import { InstructorDashboard } from "./components/pages/instructor-dashboard";
+  26 |  import { CartPage } from "./components/pages/cart-page";
+12:42:01 AM [vite] (client) page reload src/components/pages/register-page.tsx
+12:42:02 AM [vite] Internal server error: Failed to resolve import "./components/pages/dashboard-page" from "src/App.tsx". Does the file exist?
+  Plugin: vite:import-analysis
+  File: /home/dalton/dev/udeu/frontend/src/App.tsx:8:30
+  22 |  import { LoginPage } from "./components/pages/login-page";
+  23 |  import { RegisterPage } from "./components/pages/register-page";
+  24 |  import { DashboardPage } from "./components/pages/dashboard-page";
+     |                                 ^
+  25 |  import { InstructorDashboard } from "./components/pages/instructor-dashboard";
+  26 |  import { CartPage } from "./components/pages/cart-page";
+      at TransformPluginContext._formatLog (file:///home/dalton/dev/udeu/frontend/node_modules/.pnpm/vite@7.1.3/node_modules/vite/dist/node/chunks/dep-Bj7gA1-0.js:31422:43)
+      at TransformPluginContext.error (file:///home/dalton/dev/udeu/frontend/node_modules/.pnpm/vite@7.1.3/node_modules/vite/dist/node/chunks/dep-Bj7gA1-0.js:31419:14)
+      at normalizeUrl (file:///home/dalton/dev/udeu/frontend/node_modules/.pnpm/vite@7.1.3/node_modules/vite/dist/node/chunks/dep-Bj7gA1-0.js:29891:18)
+      at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+      at async file:///home/dalton/dev/udeu/frontend/node_modules/.pnpm/vite@7.1.3/node_modules/vite/dist/node/chunks/dep-Bj7gA1-0.js:29949:32
+      at async Promise.all (index 10)
+      at async TransformPluginContext.transform (file:///home/dalton/dev/udeu/frontend/node_modules/.pnpm/vite@7.1.3/node_modules/vite/dist/node/chunks/dep-Bj7gA1-0.js:29917:4)
+      at async EnvironmentPluginContainer.transform (file:///home/dalton/dev/udeu/frontend/node_modules/.pnpm/vite@7.1.3/node_modules/vite/dist/node/chunks/dep-Bj7gA1-0.js:31220:14)
+      at async loadAndTransform (file:///home/dalton/dev/udeu/frontend/node_modules/.pnpm/vite@7.1.3/node_modules/vite/dist/node/chunks/dep-Bj7gA1-0.js:26307:26)
+      at async viteTransformMiddleware (file:///home/dalton/dev/udeu/frontend/node_modules/.pnpm/vite@7.1.3/node_modules/vite/dist/node/chunks/dep-Bj7gA1-0.js:27392:20)
+12:42:13 AM [vite] (client) page reload src/components/pages/dashboard-page.tsx
+12:42:14 AM [vite] (client) Pre-transform error: Failed to resolve import "./components/pages/instructor-dashboard" from "src/App.tsx". Does the file exist?
+  Plugin: vite:import-analysis
+  File: /home/dalton/dev/udeu/frontend/src/App.tsx:9:36
+  23 |  import { RegisterPage } from "./components/pages/register-page";
+  24 |  import { DashboardPage } from "./components/pages/dashboard-page";
+  25 |  import { InstructorDashboard } from "./components/pages/instructor-dashboard";
+     |                                       ^
+  26 |  import { CartPage } from "./components/pages/cart-page";
+  27 |  import { NotFoundPage } from "./components/pages/not-found-page";
+12:42:14 AM [vite] Internal server error: Failed to resolve import "./components/pages/instructor-dashboard" from "src/App.tsx". Does the file exist?
+  Plugin: vite:import-analysis
+  File: /home/dalton/dev/udeu/frontend/src/App.tsx:9:36
+  23 |  import { RegisterPage } from "./components/pages/register-page";
+  24 |  import { DashboardPage } from "./components/pages/dashboard-page";
+  25 |  import { InstructorDashboard } from "./components/pages/instructor-dashboard";
+     |                                       ^
+  26 |  import { CartPage } from "./components/pages/cart-page";
+  27 |  import { NotFoundPage } from "./components/pages/not-found-page";
+      at TransformPluginContext._formatLog (file:///home/dalton/dev/udeu/frontend/node_modules/.pnpm/vite@7.1.3/node_modules/vite/dist/node/chunks/dep-Bj7gA1-0.js:31422:43)
+      at TransformPluginContext.error (file:///home/dalton/dev/udeu/frontend/node_modules/.pnpm/vite@7.1.3/node_modules/vite/dist/node/chunks/dep-Bj7gA1-0.js:31419:14)
+      at normalizeUrl (file:///home/dalton/dev/udeu/frontend/node_modules/.pnpm/vite@7.1.3/node_modules/vite/dist/node/chunks/dep-Bj7gA1-0.js:29891:18)
+      at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+      at async file:///home/dalton/dev/udeu/frontend/node_modules/.pnpm/vite@7.1.3/node_modules/vite/dist/node/chunks/dep-Bj7gA1-0.js:29949:32
+      at async Promise.all (index 11)
+      at async TransformPluginContext.transform (file:///home/dalton/dev/udeu/frontend/node_modules/.pnpm/vite@7.1.3/node_modules/vite/dist/node/chunks/dep-Bj7gA1-0.js:29917:4)
+      at async EnvironmentPluginContainer.transform (file:///home/dalton/dev/udeu/frontend/node_modules/.pnpm/vite@7.1.3/node_modules/vite/dist/node/chunks/dep-Bj7gA1-0.js:31220:14)
+      at async loadAndTransform (file:///home/dalton/dev/udeu/frontend/node_modules/.pnpm/vite@7.1.3/node_modules/vite/dist/node/chunks/dep-Bj7gA1-0.js:26307:26)
+      at async viteTransformMiddleware (file:///home/dalton/dev/udeu/frontend/node_modules/.pnpm/vite@7.1.3/node_modules/vite/dist/node/chunks/dep-Bj7gA1-0.js:27392:20)
+12:42:36 AM [vite] (client) page reload src/components/pages/dashboard-page.tsx
+12:42:37 AM [vite] Internal server error: Failed to resolve import "./components/pages/instructor-dashboard" from "src/App.tsx". Does the file exist?
+  Plugin: vite:import-analysis
+  File: /home/dalton/dev/udeu/frontend/src/App.tsx:9:36
+  23 |  import { RegisterPage } from "./components/pages/register-page";
+  24 |  import { DashboardPage } from "./components/pages/dashboard-page";
+  25 |  import { InstructorDashboard } from "./components/pages/instructor-dashboard";
+     |                                       ^
+  26 |  import { CartPage } from "./components/pages/cart-page";
+  27 |  import { NotFoundPage } from "./components/pages/not-found-page";
+      at TransformPluginContext._formatLog (file:///home/dalton/dev/udeu/frontend/node_modules/.pnpm/vite@7.1.3/node_modules/vite/dist/node/chunks/dep-Bj7gA1-0.js:31422:43)
+      at TransformPluginContext.error (file:///home/dalton/dev/udeu/frontend/node_modules/.pnpm/vite@7.1.3/node_modules/vite/dist/node/chunks/dep-Bj7gA1-0.js:31419:14)
+      at normalizeUrl (file:///home/dalton/dev/udeu/frontend/node_modules/.pnpm/vite@7.1.3/node_modules/vite/dist/node/chunks/dep-Bj7gA1-0.js:29891:18)
+      at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+      at async file:///home/dalton/dev/udeu/frontend/node_modules/.pnpm/vite@7.1.3/node_modules/vite/dist/node/chunks/dep-Bj7gA1-0.js:29949:32
+      at async Promise.all (index 11)
+      at async TransformPluginContext.transform (file:///home/dalton/dev/udeu/frontend/node_modules/.pnpm/vite@7.1.3/node_modules/vite/dist/node/chunks/dep-Bj7gA1-0.js:29917:4)
+      at async EnvironmentPluginContainer.transform (file:///home/dalton/dev/udeu/frontend/node_modules/.pnpm/vite@7.1.3/node_modules/vite/dist/node/chunks/dep-Bj7gA1-0.js:31220:14)
+      at async loadAndTransform (file:///home/dalton/dev/udeu/frontend/node_modules/.pnpm/vite@7.1.3/node_modules/vite/dist/node/chunks/dep-Bj7gA1-0.js:26307:26)
+      at async viteTransformMiddleware (file:///home/dalton/dev/udeu/frontend/node_modules/.pnpm/vite@7.1.3/node_modules/vite/dist/node/chunks/dep-Bj7gA1-0.js:27392:20)
+12:42:46 AM [vite] (client) page reload src/components/pages/instructor-dashboard.tsx
+12:42:48 AM [vite] (client) Pre-transform error: Failed to resolve import "./components/pages/cart-page" from "src/App.tsx". Does the file exist?
+  Plugin: vite:import-analysis
+  File: /home/dalton/dev/udeu/frontend/src/App.tsx:10:25
+  24 |  import { DashboardPage } from "./components/pages/dashboard-page";
+  25 |  import { InstructorDashboard } from "./components/pages/instructor-dashboard";
+  26 |  import { CartPage } from "./components/pages/cart-page";
+     |                            ^
+  27 |  import { NotFoundPage } from "./components/pages/not-found-page";
+  28 |  function App() {
+12:42:48 AM [vite] Internal server error: Failed to resolve import "./components/pages/cart-page" from "src/App.tsx". Does the file exist?
+  Plugin: vite:import-analysis
+  File: /home/dalton/dev/udeu/frontend/src/App.tsx:10:25
+  24 |  import { DashboardPage } from "./components/pages/dashboard-page";
+  25 |  import { InstructorDashboard } from "./components/pages/instructor-dashboard";
+  26 |  import { CartPage } from "./components/pages/cart-page";
+     |                            ^
+  27 |  import { NotFoundPage } from "./components/pages/not-found-page";
+  28 |  function App() {
+      at TransformPluginContext._formatLog (file:///home/dalton/dev/udeu/frontend/node_modules/.pnpm/vite@7.1.3/node_modules/vite/dist/node/chunks/dep-Bj7gA1-0.js:31422:43)
+      at TransformPluginContext.error (file:///home/dalton/dev/udeu/frontend/node_modules/.pnpm/vite@7.1.3/node_modules/vite/dist/node/chunks/dep-Bj7gA1-0.js:31419:14)
+      at normalizeUrl (file:///home/dalton/dev/udeu/frontend/node_modules/.pnpm/vite@7.1.3/node_modules/vite/dist/node/chunks/dep-Bj7gA1-0.js:29891:18)
+      at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+      at async file:///home/dalton/dev/udeu/frontend/node_modules/.pnpm/vite@7.1.3/node_modules/vite/dist/node/chunks/dep-Bj7gA1-0.js:29949:32
+      at async Promise.all (index 12)
+      at async TransformPluginContext.transform (file:///home/dalton/dev/udeu/frontend/node_modules/.pnpm/vite@7.1.3/node_modules/vite/dist/node/chunks/dep-Bj7gA1-0.js:29917:4)
+      at async EnvironmentPluginContainer.transform (file:///home/dalton/dev/udeu/frontend/node_modules/.pnpm/vite@7.1.3/node_modules/vite/dist/node/chunks/dep-Bj7gA1-0.js:31220:14)
+      at async loadAndTransform (file:///home/dalton/dev/udeu/frontend/node_modules/.pnpm/vite@7.1.3/node_modules/vite/dist/node/chunks/dep-Bj7gA1-0.js:26307:26)
+      at async viteTransformMiddleware (file:///home/dalton/dev/udeu/frontend/node_modules/.pnpm/vite@7.1.3/node_modules/vite/dist/node/chunks/dep-Bj7gA1-0.js:27392:20)
+12:43:10 AM [vite] (client) page reload src/components/pages/instructor-dashboard.tsx
+12:43:11 AM [vite] Internal server error: Failed to resolve import "./components/pages/cart-page" from "src/App.tsx". Does the file exist?
+  Plugin: vite:import-analysis
+  File: /home/dalton/dev/udeu/frontend/src/App.tsx:10:25
+  24 |  import { DashboardPage } from "./components/pages/dashboard-page";
+  25 |  import { InstructorDashboard } from "./components/pages/instructor-dashboard";
+  26 |  import { CartPage } from "./components/pages/cart-page";
+     |                            ^
+  27 |  import { NotFoundPage } from "./components/pages/not-found-page";
+  28 |  function App() {
+      at TransformPluginContext._formatLog (file:///home/dalton/dev/udeu/frontend/node_modules/.pnpm/vite@7.1.3/node_modules/vite/dist/node/chunks/dep-Bj7gA1-0.js:31422:43)
+      at TransformPluginContext.error (file:///home/dalton/dev/udeu/frontend/node_modules/.pnpm/vite@7.1.3/node_modules/vite/dist/node/chunks/dep-Bj7gA1-0.js:31419:14)
+      at normalizeUrl (file:///home/dalton/dev/udeu/frontend/node_modules/.pnpm/vite@7.1.3/node_modules/vite/dist/node/chunks/dep-Bj7gA1-0.js:29891:18)
+      at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+      at async file:///home/dalton/dev/udeu/frontend/node_modules/.pnpm/vite@7.1.3/node_modules/vite/dist/node/chunks/dep-Bj7gA1-0.js:29949:32
+      at async Promise.all (index 12)
+      at async TransformPluginContext.transform (file:///home/dalton/dev/udeu/frontend/node_modules/.pnpm/vite@7.1.3/node_modules/vite/dist/node/chunks/dep-Bj7gA1-0.js:29917:4)
+      at async EnvironmentPluginContainer.transform (file:///home/dalton/dev/udeu/frontend/node_modules/.pnpm/vite@7.1.3/node_modules/vite/dist/node/chunks/dep-Bj7gA1-0.js:31220:14)
+      at async loadAndTransform (file:///home/dalton/dev/udeu/frontend/node_modules/.pnpm/vite@7.1.3/node_modules/vite/dist/node/chunks/dep-Bj7gA1-0.js:26307:26)
+      at async viteTransformMiddleware (file:///home/dalton/dev/udeu/frontend/node_modules/.pnpm/vite@7.1.3/node_modules/vite/dist/node/chunks/dep-Bj7gA1-0.js:27392:20)
+12:43:20 AM [vite] (client) page reload src/components/pages/cart-page.tsx
+12:43:21 AM [vite] (client) Pre-transform error: Failed to resolve import "./components/pages/not-found-page" from "src/App.tsx". Does the file exist?
+  Plugin: vite:import-analysis
+  File: /home/dalton/dev/udeu/frontend/src/App.tsx:11:29
+  25 |  import { InstructorDashboard } from "./components/pages/instructor-dashboard";
+  26 |  import { CartPage } from "./components/pages/cart-page";
+  27 |  import { NotFoundPage } from "./components/pages/not-found-page";
+     |                                ^
+  28 |  function App() {
+  29 |    return /* @__PURE__ */ jsxDEV(Router, { children: /* @__PURE__ */ jsxDEV(Routes, { children: [
+12:43:22 AM [vite] Internal server error: Failed to resolve import "./components/pages/not-found-page" from "src/App.tsx". Does the file exist?
+  Plugin: vite:import-analysis
+  File: /home/dalton/dev/udeu/frontend/src/App.tsx:11:29
+  25 |  import { InstructorDashboard } from "./components/pages/instructor-dashboard";
+  26 |  import { CartPage } from "./components/pages/cart-page";
+  27 |  import { NotFoundPage } from "./components/pages/not-found-page";
+     |                                ^
+  28 |  function App() {
+  29 |    return /* @__PURE__ */ jsxDEV(Router, { children: /* @__PURE__ */ jsxDEV(Routes, { children: [
+      at TransformPluginContext._formatLog (file:///home/dalton/dev/udeu/frontend/node_modules/.pnpm/vite@7.1.3/node_modules/vite/dist/node/chunks/dep-Bj7gA1-0.js:31422:43)
+      at TransformPluginContext.error (file:///home/dalton/dev/udeu/frontend/node_modules/.pnpm/vite@7.1.3/node_modules/vite/dist/node/chunks/dep-Bj7gA1-0.js:31419:14)
+      at normalizeUrl (file:///home/dalton/dev/udeu/frontend/node_modules/.pnpm/vite@7.1.3/node_modules/vite/dist/node/chunks/dep-Bj7gA1-0.js:29891:18)
+      at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+      at async file:///home/dalton/dev/udeu/frontend/node_modules/.pnpm/vite@7.1.3/node_modules/vite/dist/node/chunks/dep-Bj7gA1-0.js:29949:32
+      at async Promise.all (index 13)
+      at async TransformPluginContext.transform (file:///home/dalton/dev/udeu/frontend/node_modules/.pnpm/vite@7.1.3/node_modules/vite/dist/node/chunks/dep-Bj7gA1-0.js:29917:4)
+      at async EnvironmentPluginContainer.transform (file:///home/dalton/dev/udeu/frontend/node_modules/.pnpm/vite@7.1.3/node_modules/vite/dist/node/chunks/dep-Bj7gA1-0.js:31220:14)
+      at async loadAndTransform (file:///home/dalton/dev/udeu/frontend/node_modules/.pnpm/vite@7.1.3/node_modules/vite/dist/node/chunks/dep-Bj7gA1-0.js:26307:26)
+      at async viteTransformMiddleware (file:///home/dalton/dev/udeu/frontend/node_modules/.pnpm/vite@7.1.3/node_modules/vite/dist/node/chunks/dep-Bj7gA1-0.js:27392:20)
+12:43:38 AM [vite] (client) page reload src/components/pages/cart-page.tsx
+12:43:38 AM [vite] Internal server error: Failed to resolve import "./components/pages/not-found-page" from "src/App.tsx". Does the file exist?
+  Plugin: vite:import-analysis
+  File: /home/dalton/dev/udeu/frontend/src/App.tsx:11:29
+  25 |  import { InstructorDashboard } from "./components/pages/instructor-dashboard";
+  26 |  import { CartPage } from "./components/pages/cart-page";
+  27 |  import { NotFoundPage } from "./components/pages/not-found-page";
+     |                                ^
+  28 |  function App() {
+  29 |    return /* @__PURE__ */ jsxDEV(Router, { children: /* @__PURE__ */ jsxDEV(Routes, { children: [
+      at TransformPluginContext._formatLog (file:///home/dalton/dev/udeu/frontend/node_modules/.pnpm/vite@7.1.3/node_modules/vite/dist/node/chunks/dep-Bj7gA1-0.js:31422:43)
+      at TransformPluginContext.error (file:///home/dalton/dev/udeu/frontend/node_modules/.pnpm/vite@7.1.3/node_modules/vite/dist/node/chunks/dep-Bj7gA1-0.js:31419:14)
+      at normalizeUrl (file:///home/dalton/dev/udeu/frontend/node_modules/.pnpm/vite@7.1.3/node_modules/vite/dist/node/chunks/dep-Bj7gA1-0.js:29891:18)
+      at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+      at async file:///home/dalton/dev/udeu/frontend/node_modules/.pnpm/vite@7.1.3/node_modules/vite/dist/node/chunks/dep-Bj7gA1-0.js:29949:32
+      at async Promise.all (index 13)
+      at async TransformPluginContext.transform (file:///home/dalton/dev/udeu/frontend/node_modules/.pnpm/vite@7.1.3/node_modules/vite/dist/node/chunks/dep-Bj7gA1-0.js:29917:4)
+      at async EnvironmentPluginContainer.transform (file:///home/dalton/dev/udeu/frontend/node_modules/.pnpm/vite@7.1.3/node_modules/vite/dist/node/chunks/dep-Bj7gA1-0.js:31220:14)
+      at async loadAndTransform (file:///home/dalton/dev/udeu/frontend/node_modules/.pnpm/vite@7.1.3/node_modules/vite/dist/node/chunks/dep-Bj7gA1-0.js:26307:26)
+      at async viteTransformMiddleware (file:///home/dalton/dev/udeu/frontend/node_modules/.pnpm/vite@7.1.3/node_modules/vite/dist/node/chunks/dep-Bj7gA1-0.js:27392:20)
+12:43:53 AM [vite] (client) page reload src/components/pages/not-found-page.tsx
+12:43:59 AM [vite] (client) hmr update /src/App.tsx
+1:36:36 AM [vite] (client) hmr update /src/App.tsx
+1:36:58 AM [vite] (client) hmr update /src/components/pages/dashboard-page.tsx
+1:37:13 AM [vite] (client) hmr update /src/App.tsx
+1:37:28 AM [vite] (client) hmr update /src/App.tsx
+1:38:02 AM [vite] (client) hmr update /src/components/courses/simple-search.tsx
+1:38:17 AM [vite] (client) hmr update /src/components/pages/course-details-page.tsx
+1:38:30 AM [vite] (client) hmr update /src/components/pages/homepage.tsx
+1:38:43 AM [vite] (client) hmr update /src/components/pages/courses-page.tsx
+ ELIFECYCLE  Command failed with exit code 143.
+
+> frontend@0.0.0 dev /home/dalton/dev/udeu/frontend
+> vite
+
+You are using Node.js 22.11.0. Vite requires Node.js version 20.19+ or 22.12+. Please upgrade your Node.js version.
+
+  VITE v7.1.3  ready in 423 ms
+
+  ➜  Local:   http://localhost:5173/
+  ➜  Network: use --host to expose
+ ELIFECYCLE  Command failed with exit code 143.
