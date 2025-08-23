@@ -1,5 +1,5 @@
 // API Service Layer for Backend Communication
-import type { ApiResponse, User, Course, Enrollment, Payment, AuthTokens } from '../types/shared';
+import type { ApiResponse, User, Course, Enrollment, Payment, AuthTokens, Progress } from '../types/shared';
 
 const API_BASE_URL = 'http://localhost:3000'; // NestJS default port
 
@@ -240,6 +240,109 @@ export const paymentsAPI = {
 
   getById: async (id: string): Promise<ApiResponse<Payment>> => {
     return apiService.get<Payment>(`/payments/${id}`);
+  },
+
+  // Process payment (backend endpoint exists)
+  processPayment: async (id: string): Promise<ApiResponse<any>> => {
+    return apiService.post<any>(`/payments/${id}/process`, {});
+  },
+
+  // Refund payment (backend endpoint exists)
+  refundPayment: async (id: string, reason?: string): Promise<ApiResponse<any>> => {
+    return apiService.post<any>(`/payments/${id}/refund`, { reason });
+  },
+
+  // Get payments by course
+  getByCourse: async (courseId: string): Promise<ApiResponse<Payment[]>> => {
+    return apiService.get<Payment[]>(`/payments/course/${courseId}`);
+  },
+
+  // Get payment statistics
+  getPaymentStats: async (): Promise<ApiResponse<any>> => {
+    return apiService.get<any>('/payments/stats/summary');
+  },
+
+  // Handle payment webhooks (for external payment providers)
+  handleWebhook: async (provider: string, payload: any, query?: any): Promise<ApiResponse<any>> => {
+    return apiService.post<any>(`/payments/webhook/${provider}`, payload);
+  },
+};
+
+// Progress API calls
+export const progressAPI = {
+  getAll: async (): Promise<ApiResponse<any[]>> => {
+    return apiService.get<any[]>('/progress');
+  },
+
+  getById: async (id: string): Promise<ApiResponse<any>> => {
+    return apiService.get<any>(`/progress/${id}`);
+  },
+
+  getByUser: async (userId: string): Promise<ApiResponse<any[]>> => {
+    return apiService.get<any[]>(`/progress/user/${userId}`);
+  },
+
+  getByCourse: async (courseId: string): Promise<ApiResponse<any[]>> => {
+    return apiService.get<any[]>(`/progress/course/${courseId}`);
+  },
+
+  getByEnrollment: async (enrollmentId: string): Promise<ApiResponse<any[]>> => {
+    return apiService.get<any[]>(`/progress/enrollment/${enrollmentId}`);
+  },
+
+  create: async (progressData: Partial<any>): Promise<ApiResponse<any>> => {
+    return apiService.post<any>('/progress', progressData);
+  },
+
+  update: async (id: string, progressData: Partial<any>): Promise<ApiResponse<any>> => {
+    return apiService.put<any>(`/progress/${id}`, progressData);
+  },
+
+  delete: async (id: string): Promise<ApiResponse<void>> => {
+    return apiService.delete<void>(`/progress/${id}`);
+  },
+
+  updateProgress: async (id: string, progress: number): Promise<ApiResponse<any>> => {
+    return apiService.put<any>(`/progress/${id}/progress`, { progress });
+  },
+
+  completeLesson: async (id: string): Promise<ApiResponse<any>> => {
+    return apiService.put<any>(`/progress/${id}/complete`, {});
+  },
+
+  getCourseProgress: async (courseId: string): Promise<ApiResponse<any>> => {
+    return apiService.get<any>(`/progress/course/${courseId}/summary`);
+  },
+};
+
+// Categories API calls
+export const categoriesAPI = {
+  getAll: async (): Promise<ApiResponse<any[]>> => {
+    return apiService.get<any[]>('/categories');
+  },
+
+  getById: async (id: string): Promise<ApiResponse<any>> => {
+    return apiService.get<any>(`/categories/${id}`);
+  },
+
+  create: async (categoryData: any): Promise<ApiResponse<any>> => {
+    return apiService.post<any>('/categories', categoryData);
+  },
+
+  update: async (id: string, categoryData: any): Promise<ApiResponse<any>> => {
+    return apiService.put<any>(`/categories/${id}`, categoryData);
+  },
+
+  delete: async (id: string): Promise<ApiResponse<void>> => {
+    return apiService.delete<void>(`/categories/${id}`);
+  },
+
+  getCategoryCourses: async (id: string): Promise<ApiResponse<Course[]>> => {
+    return apiService.get<Course[]>(`/categories/${id}/courses`);
+  },
+
+  getSubcategories: async (id: string): Promise<ApiResponse<any[]>> => {
+    return apiService.get<any[]>(`/categories/${id}/subcategories`);
   },
 };
 

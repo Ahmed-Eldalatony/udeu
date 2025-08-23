@@ -3,9 +3,11 @@ import { AuthProvider } from './contexts/AuthContext';
 import { CartProvider } from './contexts/CartContext';
 import { GlobalStateProvider } from './contexts/GlobalStateContext';
 import { LoadingProvider } from './contexts/LoadingContext';
+import { ErrorProvider, useError } from './contexts/ErrorContext';
 import { GlobalLoadingOverlay } from './components/ui/global-loading-overlay';
 import { ProtectedRoute } from './components/auth/ProtectedRoute';
 import { AdvancedErrorBoundary, RouteErrorBoundary, ErrorTestComponent } from './components/error-boundary';
+import { ToastContainer } from './components/ui/toast';
 import { LogoutTestComponent } from './components/auth/LogoutTestComponent';
 import { Homepage } from './components/pages/homepage';
 import { LoginPage } from './components/pages/login-page';
@@ -16,8 +18,11 @@ import { DashboardPage } from './components/pages/dashboard-page';
 import { InstructorDashboard } from './components/pages/instructor-dashboard';
 import { CartPage } from './components/pages/cart-page';
 import { NotFoundPage } from './components/pages/not-found-page';
+import { ErrorHandlingDemo } from './components/ui/error-handling-demo';
 
-function App() {
+function AppContent() {
+  const { toasts, removeToast } = useError();
+
   return (
     <BrowserRouter>
       <AdvancedErrorBoundary
@@ -35,6 +40,7 @@ function App() {
             <AuthProvider>
               <CartProvider>
                 <GlobalLoadingOverlay />
+                <ToastContainer toasts={toasts} onClose={removeToast} />
                 <div className="min-h-screen bg-gray-50">
                   <Routes>
                     <Route path="/" element={
@@ -90,6 +96,11 @@ function App() {
                         <ErrorTestComponent />
                       </RouteErrorBoundary>
                     } />
+                    <Route path="/error-handling-demo" element={
+                      <RouteErrorBoundary route="ErrorHandlingDemo">
+                        <ErrorHandlingDemo />
+                      </RouteErrorBoundary>
+                    } />
                     <Route path="/logout-test" element={
                       <RouteErrorBoundary route="LogoutTest">
                         <LogoutTestComponent />
@@ -108,6 +119,14 @@ function App() {
         </LoadingProvider>
       </AdvancedErrorBoundary>
     </BrowserRouter>
+  );
+}
+
+function App() {
+  return (
+    <ErrorProvider enableReporting={process.env.NODE_ENV === 'production'}>
+      <AppContent />
+    </ErrorProvider>
   );
 }
 

@@ -9,10 +9,11 @@ import { ErrorMessage } from '../ui/error-message';
 import { useAuth } from '../../contexts/AuthContext';
 import { useFormValidation, usePasswordStrength } from '../../hooks/useFormValidation';
 import { validationRules } from '../../lib/validation';
+import { useError } from '../../contexts/ErrorContext';
 import type { FormValidationSchema } from '../../hooks/useFormValidation';
 
 export const RegisterPage: React.FC = () => {
-  const [error, setError] = useState<string | null>(null);
+  const { addError } = useError();
   const { register, isLoading } = useAuth();
   const navigate = useNavigate();
 
@@ -46,7 +47,6 @@ export const RegisterPage: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setError(null);
 
     // Validate all fields
     if (!formActions.validateForm()) {
@@ -69,7 +69,15 @@ export const RegisterPage: React.FC = () => {
     if (result.success) {
       navigate('/dashboard');
     } else {
-      setError(result.error || 'Registration failed');
+      // Use the new error handling system
+      addError(result.error || 'Registration failed', {
+        context: 'user_registration',
+        formData: {
+          email: formState.values.email,
+          firstName: formState.values.firstName,
+          lastName: formState.values.lastName
+        }
+      });
     }
   };
 
@@ -184,13 +192,6 @@ export const RegisterPage: React.FC = () => {
                   showPasswordToggle={true}
                 />
 
-                {error && (
-                  <ErrorMessage
-                    message={error}
-                    onRetry={() => setError(null)}
-                    variant="card"
-                  />
-                )}
 
                 <div>
                   <LoadingButton
