@@ -52,15 +52,13 @@ export class Course {
   targetAudience: string; // JSON string of target audience
 
   @Column({
-    type: 'enum',
-    enum: CourseLevel,
+    type: 'text',
     default: CourseLevel.ALL_LEVELS
   })
   level: CourseLevel;
 
   @Column({
-    type: 'enum',
-    enum: CourseStatus,
+    type: 'text',
     default: CourseStatus.DRAFT
   })
   status: CourseStatus;

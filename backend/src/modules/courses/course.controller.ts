@@ -19,7 +19,9 @@ import { User, UserRole } from '../../entities/user.entity';
 
 @Controller('courses')
 export class CourseController {
-  constructor(private readonly courseService: CourseService) {}
+  constructor(
+    private readonly courseService: CourseService,
+  ) {}
 
   @UseGuards(JwtAuthGuard)
   @Post()
@@ -83,9 +85,13 @@ export class CourseController {
 
   @UseGuards(JwtAuthGuard)
   @Post(':id/enroll')
-  enroll(@Param('id', ParseUUIDPipe) id: string, @GetUser() user: User) {
-    // TODO: Implement enrollment logic
-    return { message: 'Enrollment feature coming soon' };
+  enroll(
+    @Param('id', ParseUUIDPipe) id: string,
+    @Body() enrollmentData: { amountPaid?: number; isFree?: boolean },
+    @GetUser() user: User,
+  ) {
+    // TODO: Implement enrollment functionality
+    return { message: 'Enrollment feature coming soon', courseId: id, userId: user.id };
   }
 
   @Get(':id/students')

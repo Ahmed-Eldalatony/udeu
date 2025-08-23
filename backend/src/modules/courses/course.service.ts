@@ -78,7 +78,7 @@ export class CourseService {
     }
 
     // Convert arrays to JSON strings
-    const updateData = { ...updateCourseDto };
+    const updateData: any = { ...updateCourseDto };
     if (updateCourseDto.objectives) {
       updateData.objectives = JSON.stringify(updateCourseDto.objectives);
     }
