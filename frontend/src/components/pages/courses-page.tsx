@@ -3,9 +3,11 @@ import { useSearchParams } from 'react-router-dom';
 import { Layout } from '../layout/layout';
 import { SimpleCourseSearch } from '../courses/simple-search';
 import { CourseGrid } from '../courses/course-grid';
+import { CategoryBrowser } from '../courses/category-browser';
 import { Button } from '../ui/button';
 import { Badge } from '../ui/badge';
-import { Filter, X } from 'lucide-react';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '../ui/tabs';
+import { Filter, X, BookOpen, Tag } from 'lucide-react';
 
 interface Course {
   id: string;
@@ -322,22 +324,47 @@ export const CoursesPage: React.FC = () => {
             </div>
           </div>
 
-          {/* Courses Grid */}
-          <CourseGrid
-            courses={courses}
-            isLoading={isLoading}
-            onEnroll={handleEnroll}
-            onViewDetails={handleViewDetails}
-          />
+          {/* Tabbed Content */}
+          <Tabs defaultValue="all-courses" className="w-full">
+            <TabsList className="grid w-full grid-cols-2">
+              <TabsTrigger value="all-courses" className="flex items-center gap-2">
+                <BookOpen className="h-4 w-4" />
+                All Courses
+              </TabsTrigger>
+              <TabsTrigger value="categories" className="flex items-center gap-2">
+                <Tag className="h-4 w-4" />
+                Browse by Category
+              </TabsTrigger>
+            </TabsList>
 
-          {/* Load More Button */}
-          {courses.length > 0 && courses.length < totalResults && (
-            <div className="mt-8 text-center">
-              <Button variant="outline">
-                Load More Courses
-              </Button>
-            </div>
-          )}
+            <TabsContent value="all-courses" className="mt-6">
+              {/* Courses Grid */}
+              <CourseGrid
+                courses={courses}
+                isLoading={isLoading}
+                onEnroll={handleEnroll}
+                onViewDetails={handleViewDetails}
+              />
+
+              {/* Load More Button */}
+              {courses.length > 0 && courses.length < totalResults && (
+                <div className="mt-8 text-center">
+                  <Button variant="outline">
+                    Load More Courses
+                  </Button>
+                </div>
+              )}
+            </TabsContent>
+
+            <TabsContent value="categories" className="mt-6">
+              <CategoryBrowser
+                onCourseSelect={(course) => {
+                  console.log('Selected course:', course);
+                  handleViewDetails(course.id);
+                }}
+              />
+            </TabsContent>
+          </Tabs>
         </div>
       </div>
     </Layout>

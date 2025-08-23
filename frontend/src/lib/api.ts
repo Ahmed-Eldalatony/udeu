@@ -344,8 +344,9 @@ export const categoriesAPI = {
     return apiService.delete<void>(`/categories/${id}`);
   },
 
-  getCategoryCourses: async (id: string): Promise<ApiResponse<Course[]>> => {
-    return apiService.get<Course[]>(`/categories/${id}/courses`);
+  getCategoryCourses: async (id: string, query?: any): Promise<ApiResponse<Course[]>> => {
+    const queryString = query ? new URLSearchParams(query as any).toString() : '';
+    return apiService.get<Course[]>(`/categories/${id}/courses${queryString ? `?${queryString}` : ''}`);
   },
 
   getSubcategories: async (id: string): Promise<ApiResponse<any[]>> => {
