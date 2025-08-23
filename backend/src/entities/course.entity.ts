@@ -1,5 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, ManyToOne, JoinColumn, OneToMany } from 'typeorm';
 import { User } from './user.entity';
+import { Category } from './category.entity';
 
 export enum CourseLevel {
   BEGINNER = 'beginner',
@@ -69,8 +70,12 @@ export class Course {
   @Column({ type: 'decimal', precision: 10, scale: 2, nullable: true })
   salePrice: number;
 
+  @ManyToOne(() => Category, { nullable: true })
+  @JoinColumn({ name: 'categoryId' })
+  category: Category;
+
   @Column({ nullable: true })
-  category: string;
+  categoryId: number;
 
   @Column({ type: 'text', nullable: true })
   tags: string; // JSON string of tags

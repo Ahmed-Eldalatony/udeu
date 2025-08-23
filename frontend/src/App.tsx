@@ -18,6 +18,7 @@ import { DashboardPage } from './components/pages/dashboard-page';
 import { InstructorDashboard } from './components/pages/instructor-dashboard';
 import { CartPage } from './components/pages/cart-page';
 import { NotFoundPage } from './components/pages/not-found-page';
+import { AdminPage } from './components/pages/admin-page';
 import { ErrorHandlingDemo } from './components/ui/error-handling-demo';
 
 function AppContent() {
@@ -88,6 +89,13 @@ function AppContent() {
                       <ProtectedRoute requireInstructor={true}>
                         <RouteErrorBoundary route="InstructorDashboard">
                           <InstructorDashboard />
+                        </RouteErrorBoundary>
+                      </ProtectedRoute>
+                    } />
+                    <Route path="/admin" element={
+                      <ProtectedRoute requireAdmin={true}>
+                        <RouteErrorBoundary route="Admin">
+                          <AdminPage />
                         </RouteErrorBoundary>
                       </ProtectedRoute>
                     } />
