@@ -14,7 +14,6 @@ import {
   Tag,
   ShoppingCart,
   TrendingUp,
-  Shield
 } from 'lucide-react';
 
 interface AdminSection {

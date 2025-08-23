@@ -1,5 +1,4 @@
-import React, { Component, type ErrorInfo, type ReactNode } from 'react';
-import { ErrorMessage } from '../ui/error-message';
+import { Component, type ErrorInfo, type ReactNode } from 'react';
 import { Button } from '../ui/button';
 import { RefreshCw, Home, Bug, AlertTriangle } from 'lucide-react';
 

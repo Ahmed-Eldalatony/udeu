@@ -9,7 +9,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
 import { Badge } from '../ui/badge';
 import { LoadingSpinner } from '../ui/loading-spinner';
 import { ErrorMessage } from '../ui/error-message';
-import { Star, Clock, Users, Play, CheckCircle, ArrowLeft } from 'lucide-react';
+import { Star, Clock, Users, CheckCircle, ArrowLeft } from 'lucide-react';
 
 interface Course {
   id: string;

@@ -11,13 +11,11 @@ import {
   Search,
   User,
   Mail,
-  Calendar,
   Shield,
   Edit,
   Trash2,
   UserPlus,
   Filter,
-  MoreHorizontal,
   Eye
 } from 'lucide-react';
 import { toast } from '../ui/use-toast';

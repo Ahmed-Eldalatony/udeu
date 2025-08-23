@@ -6,7 +6,7 @@ import { Button } from '../ui/button';
  * This component provides buttons to trigger different types of errors
  */
 export const ErrorTestComponent: React.FC = () => {
-  const [errorType, setErrorType] = useState<string>('');
+  const [errorType] = useState<string>('');
 
   const triggerRuntimeError = () => {
     // This will cause a runtime error

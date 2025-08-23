@@ -71,25 +71,25 @@ export enum Currency {
 
 // Interfaces
 export interface User {
-   id: string;
-   email: string;
-   firstName: string;
-   lastName: string;
-   profilePicture?: string;
-   bio?: string;
-   description?: string;
-   role: UserRole;
-   skills?: string; // JSON string of skills array
-   website?: string;
-   linkedin?: string;
-   github?: string;
-   twitter?: string;
-   isEmailVerified: boolean;
-   isTwoFactorEnabled: boolean; // Missing from shared types but present in backend entity
-   isActive: boolean;
-   createdAt: Date;
-   updatedAt: Date;
- }
+    id: string;
+    email: string;
+    firstName: string;
+    lastName: string;
+    profilePicture?: string;
+    bio?: string;
+    description?: string;
+    role: UserRole;
+    skills?: string; // JSON string of skills array
+    website?: string;
+    linkedin?: string;
+    github?: string;
+    twitter?: string;
+    isEmailVerified: boolean;
+    isTwoFactorEnabled: boolean; // Added to match backend entity
+    isActive: boolean;
+    createdAt: string; // Changed to string for API compatibility
+    updatedAt: string; // Changed to string for API compatibility
+  }
 
 export interface Course {
   id: string;
@@ -182,37 +182,37 @@ export interface Progress {
 }
 
 export interface Payment {
-  id: string;
-  user: User;
-  userId: string;
-  course?: Course;
-  courseId?: string;
-  status: PaymentStatus;
-  paymentMethod: PaymentMethod;
-  currency: Currency;
-  amount: number;
-  fee: number;
-  tax: number;
-  netAmount: number;
-  transactionId?: string;
-  paymentIntentId?: string;
-  paymentMetadata?: Record<string, any>;
-  description?: string;
-  invoiceUrl?: string;
-  receiptUrl?: string;
-  isRefunded: boolean;
-  refundedAmount: number;
-  refundedAt?: Date;
-  refundReason?: string;
-  isSubscription: boolean;
-  subscriptionId?: string;
-  billingCycle?: string;
-  customerInfo?: Record<string, any>;
-  errorDetails?: Record<string, any>;
-  isActive: boolean;
-  createdAt: Date;
-  updatedAt: Date;
-}
+   id: string;
+   user: User;
+   userId: string;
+   course?: Course;
+   courseId?: string;
+   status: PaymentStatus | string; // Allow both enum and string for API compatibility
+   paymentMethod: PaymentMethod | string; // Allow both enum and string for API compatibility
+   currency: Currency | string; // Allow both enum and string for API compatibility
+   amount: number;
+   fee: number; // Platform fee
+   tax: number;
+   netAmount: number; // Amount after fees and taxes
+   transactionId?: string; // External payment processor ID
+   paymentIntentId?: string; // Stripe payment intent ID
+   paymentMetadata?: Record<string, any>; // Additional payment data
+   description?: string;
+   invoiceUrl?: string;
+   receiptUrl?: string;
+   isRefunded: boolean;
+   refundedAmount: number;
+   refundedAt?: string; // Changed to string for API compatibility
+   refundReason?: string;
+   isSubscription: boolean;
+   subscriptionId?: string;
+   billingCycle?: string; // monthly, yearly
+   customerInfo?: Record<string, any>; // Billing address, card details (masked)
+   errorDetails?: Record<string, any>; // Error information if payment failed
+   isActive: boolean;
+   createdAt: string; // Changed to string for API compatibility
+   updatedAt: string; // Changed to string for API compatibility
+ }
 
 // Cart Item (for frontend)
 export interface CartItem {

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { categoriesAPI, coursesAPI } from '../../lib/api';
+import { categoriesAPI } from '../../lib/api';
 import { Button } from '../ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
 import { Badge } from '../ui/badge';
@@ -12,7 +12,6 @@ import {
   Star,
   Clock,
   Search,
-  Filter,
   Grid,
   List,
   ChevronRight

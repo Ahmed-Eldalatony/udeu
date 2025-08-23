@@ -15,7 +15,7 @@ interface NavbarProps {
 export const Navbar: React.FC<NavbarProps> = ({
   onSearch,
 }) => {
-  const { user, isLoading } = useAuth();
+  const { user } = useAuth();
   const { totalItems } = useCart();
   const { logout } = useLogoutWithNavigation();
   const [searchQuery, setSearchQuery] = React.useState('');

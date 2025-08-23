@@ -7,8 +7,6 @@ import { SimpleCourseSearch } from '../courses/simple-search';
 import { CourseGrid } from '../courses/course-grid';
 import { Button } from '../ui/button';
 import { Card, CardContent } from '../ui/card';
-import { LoadingSpinner } from '../ui/loading-spinner';
-import { ErrorMessage } from '../ui/error-message';
 import { BookOpen, Users, Award, TrendingUp } from 'lucide-react';
 
 interface Course {
@@ -36,115 +34,115 @@ interface Course {
 }
 
 export const Homepage: React.FC = () => {
-  const [courses, setCourses] = useState<Course[]>([]);
+  const [courses] = useState<Course[]>([]);
   const [searchQuery, setSearchQuery] = useState('');
 
   // API hooks for better error handling and loading states
   const {
     execute: searchCourses,
-    error: searchError,
+    // error: searchError,
     isLoading: isSearching,
-    reset: resetSearch
+    // reset: resetSearch
   } = useApi(coursesAPI.search);
 
   const {
     execute: loadCourses,
-    error: loadError,
+    // error: loadError,
     isLoading: isLoadingCourses,
-    reset: resetLoad
+    // reset: resetLoad
   } = useApi(coursesAPI.getAll);
 
   // Mock data for demonstration
-  const mockCourses: Course[] = [
-    {
-      id: '1',
-      title: 'Complete React Developer Course',
-      description: 'Learn React from scratch and build modern web applications',
-      shortDescription: 'Master React development with hands-on projects',
-      thumbnailUrl: 'https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=400',
-      price: 99.99,
-      isFree: false,
-      rating: 4.8,
-      totalReviews: 1250,
-      totalStudents: 15000,
-      totalDuration: 480,
-      level: 'intermediate',
-      category: 'Web Development',
-      tags: ['React', 'JavaScript', 'Frontend'],
-      instructor: {
-        id: '1',
-        firstName: 'John',
-        lastName: 'Doe',
-      },
-      featured: true,
-    },
-    {
-      id: '2',
-      title: 'Python for Data Science',
-      description: 'Comprehensive Python programming course for data analysis',
-      shortDescription: 'Learn Python and data science fundamentals',
-      thumbnailUrl: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400',
-      price: 79.99,
-      isFree: false,
-      rating: 4.6,
-      totalReviews: 890,
-      totalStudents: 12000,
-      totalDuration: 360,
-      level: 'beginner',
-      category: 'Data Science',
-      tags: ['Python', 'Data Science', 'Analytics'],
-      instructor: {
-        id: '2',
-        firstName: 'Jane',
-        lastName: 'Smith',
-      },
-      featured: false,
-    },
-    {
-      id: '3',
-      title: 'Digital Marketing Mastery',
-      description: 'Complete guide to digital marketing and online business',
-      shortDescription: 'Grow your business with digital marketing strategies',
-      thumbnailUrl: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400',
-      price: 89.99,
-      isFree: false,
-      rating: 4.7,
-      totalReviews: 750,
-      totalStudents: 8000,
-      totalDuration: 240,
-      level: 'intermediate',
-      category: 'Business',
-      tags: ['Marketing', 'SEO', 'Social Media'],
-      instructor: {
-        id: '3',
-        firstName: 'Mike',
-        lastName: 'Johnson',
-      },
-      featured: true,
-    },
-    {
-      id: '4',
-      title: 'Introduction to Machine Learning',
-      description: 'Learn the fundamentals of machine learning and AI',
-      shortDescription: 'Your journey into artificial intelligence starts here',
-      thumbnailUrl: 'https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=400',
-      price: 0,
-      isFree: true,
-      rating: 4.9,
-      totalReviews: 2100,
-      totalStudents: 25000,
-      totalDuration: 300,
-      level: 'beginner',
-      category: 'Artificial Intelligence',
-      tags: ['Machine Learning', 'AI', 'Python'],
-      instructor: {
-        id: '4',
-        firstName: 'Sarah',
-        lastName: 'Wilson',
-      },
-      featured: false,
-    },
-  ];
+  // const mockCourses: Course[] = [
+  //   {
+  //     id: '1',
+  //     title: 'Complete React Developer Course',
+  //     description: 'Learn React from scratch and build modern web applications',
+  //     shortDescription: 'Master React development with hands-on projects',
+  //     thumbnailUrl: 'https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=400',
+  //     price: 99.99,
+  //     isFree: false,
+  //     rating: 4.8,
+  //     totalReviews: 1250,
+  //     totalStudents: 15000,
+  //     totalDuration: 480,
+  //     level: 'intermediate',
+  //     category: 'Web Development',
+  //     tags: ['React', 'JavaScript', 'Frontend'],
+  //     instructor: {
+  //       id: '1',
+  //       firstName: 'John',
+  //       lastName: 'Doe',
+  //     },
+  //     featured: true,
+  //   },
+  //   {
+  //     id: '2',
+  //     title: 'Python for Data Science',
+  //     description: 'Comprehensive Python programming course for data analysis',
+  //     shortDescription: 'Learn Python and data science fundamentals',
+  //     thumbnailUrl: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400',
+  //     price: 79.99,
+  //     isFree: false,
+  //     rating: 4.6,
+  //     totalReviews: 890,
+  //     totalStudents: 12000,
+  //     totalDuration: 360,
+  //     level: 'beginner',
+  //     category: 'Data Science',
+  //     tags: ['Python', 'Data Science', 'Analytics'],
+  //     instructor: {
+  //       id: '2',
+  //       firstName: 'Jane',
+  //       lastName: 'Smith',
+  //     },
+  //     featured: false,
+  //   },
+  //   {
+  //     id: '3',
+  //     title: 'Digital Marketing Mastery',
+  //     description: 'Complete guide to digital marketing and online business',
+  //     shortDescription: 'Grow your business with digital marketing strategies',
+  //     thumbnailUrl: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400',
+  //     price: 89.99,
+  //     isFree: false,
+  //     rating: 4.7,
+  //     totalReviews: 750,
+  //     totalStudents: 8000,
+  //     totalDuration: 240,
+  //     level: 'intermediate',
+  //     category: 'Business',
+  //     tags: ['Marketing', 'SEO', 'Social Media'],
+  //     instructor: {
+  //       id: '3',
+  //       firstName: 'Mike',
+  //       lastName: 'Johnson',
+  //     },
+  //     featured: true,
+  //   },
+  //   {
+  //     id: '4',
+  //     title: 'Introduction to Machine Learning',
+  //     description: 'Learn the fundamentals of machine learning and AI',
+  //     shortDescription: 'Your journey into artificial intelligence starts here',
+  //     thumbnailUrl: 'https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=400',
+  //     price: 0,
+  //     isFree: true,
+  //     rating: 4.9,
+  //     totalReviews: 2100,
+  //     totalStudents: 25000,
+  //     totalDuration: 300,
+  //     level: 'beginner',
+  //     category: 'Artificial Intelligence',
+  //     tags: ['Machine Learning', 'AI', 'Python'],
+  //     instructor: {
+  //       id: '4',
+  //       firstName: 'Sarah',
+  //       lastName: 'Wilson',
+  //     },
+  //     featured: false,
+  //   },
+  // ];
 
   const handleSearch = async (filters: any) => {
     setSearchQuery(filters.q || '');
