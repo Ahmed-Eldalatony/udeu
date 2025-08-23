@@ -1,6 +1,8 @@
 import { DataSource } from 'typeorm';
 import { User } from './src/entities/user.entity';
 import { Course, CourseLevel, CourseStatus } from './src/entities/course.entity';
+import { Category } from './src/entities/category.entity';
+import { Review } from './src/entities/review.entity';
 import { Enrollment, EnrollmentStatus } from './src/entities/enrollment.entity';
 import { Payment } from './src/entities/payment.entity';
 import { Progress } from './src/entities/progress.entity';
@@ -15,7 +17,7 @@ async function seedDatabase() {
   const dataSource = new DataSource({
     type: 'sqlite',
     database: 'database.sqlite',
-    entities: [User, Course, Enrollment, Payment, Progress],
+    entities: [User, Course, Category, Review, Enrollment, Payment, Progress],
     synchronize: true,
     logging: false,
   });
@@ -30,7 +32,9 @@ async function seedDatabase() {
     await dataSource.getRepository(Progress).clear();
     await dataSource.getRepository(Payment).clear();
     await dataSource.getRepository(Enrollment).clear();
+    await dataSource.getRepository(Review).clear();
     await dataSource.getRepository(Course).clear();
+    await dataSource.getRepository(Category).clear();
     await dataSource.getRepository(User).clear();
 
     // Hash password for all users
@@ -84,9 +88,54 @@ async function seedDatabase() {
     const savedUsers = await dataSource.getRepository(User).save(users);
     console.log('✅ Users seeded successfully');
 
+    // Create categories
+    console.log('📂 Creating categories...');
+    const categories: Partial<Category>[] = [
+      {
+        id: 1,
+        name: 'Frontend Development',
+        slug: 'frontend-development',
+        description: 'Learn frontend web development technologies',
+        parentId: undefined,
+      },
+      {
+        id: 2,
+        name: 'Backend Development',
+        slug: 'backend-development',
+        description: 'Master backend development and server-side technologies',
+        parentId: undefined,
+      },
+      {
+        id: 3,
+        name: 'Programming Languages',
+        slug: 'programming-languages',
+        description: 'Learn various programming languages',
+        parentId: undefined,
+      },
+      {
+        id: 4,
+        name: 'React',
+        slug: 'react',
+        description: 'React.js and related technologies',
+        parentId: 1,
+      },
+      {
+        id: 5,
+        name: 'TypeScript',
+        slug: 'typescript',
+        description: 'TypeScript programming language',
+        parentId: 3,
+      },
+    ];
+
+    const savedCategories = await dataSource.getRepository(Category).save(categories);
+    console.log('✅ Categories seeded successfully');
+
     // Create sample courses
     console.log('📚 Creating courses...');
     const instructor = savedUsers.find(u => u.role === UserRole.INSTRUCTOR)!;
+    const frontendCategory = savedCategories.find(c => c.name === 'Frontend Development')!;
+    const programmingCategory = savedCategories.find(c => c.name === 'Programming Languages')!;
 
     const courses: Partial<Course>[] = [
       {
@@ -107,7 +156,8 @@ async function seedDatabase() {
         isFree: false,
         isPublished: true,
         publishedAt: new Date(),
-        category: 'Frontend Development',
+        category: frontendCategory,
+        categoryId: frontendCategory.id,
         tags: JSON.stringify(['react', 'javascript', 'frontend', 'web-development']),
         objectives: JSON.stringify([
           'Understand React fundamentals',
@@ -145,7 +195,8 @@ async function seedDatabase() {
         isFree: false,
         isPublished: true,
         publishedAt: new Date(),
-        category: 'Programming Languages',
+        category: programmingCategory,
+        categoryId: programmingCategory.id,
         tags: JSON.stringify(['typescript', 'javascript', 'type-safety', 'advanced-patterns']),
         objectives: JSON.stringify([
           'Master advanced TypeScript features',
@@ -170,6 +221,73 @@ async function seedDatabase() {
     // Save courses
     const savedCourses = await dataSource.getRepository(Course).save(courses);
     console.log('✅ Courses seeded successfully');
+
+    // Create sample reviews
+    console.log('⭐ Creating reviews...');
+    const student1 = savedUsers.find(u => u.email === 'john.doe@email.com')!;
+    const student2 = savedUsers.find(u => u.email === 'mike.johnson@email.com')!;
+    const course1 = savedCourses[0];
+    const course2 = savedCourses[1];
+
+    const reviews: Partial<Review>[] = [
+      {
+        id: randomUUID(),
+        userId: student1.id,
+        user: student1,
+        courseId: course1.id,
+        course: course1,
+        rating: 5,
+        title: 'Excellent course!',
+        comment: 'This course exceeded my expectations. The instructor was very knowledgeable and the content was well-structured.',
+        pros: ['Clear explanations', 'Practical examples', 'Good pace'],
+        cons: ['Some sections could be more detailed'],
+        isVisible: true,
+        isVerified: true,
+        helpful: 12,
+        unhelpful: 2,
+        createdAt: new Date('2024-01-15'),
+        updatedAt: new Date('2024-01-15'),
+      },
+      {
+        id: randomUUID(),
+        userId: student2.id,
+        user: student2,
+        courseId: course1.id,
+        course: course1,
+        rating: 4,
+        title: 'Great learning experience',
+        comment: 'I learned a lot from this course. Would recommend to beginners.',
+        pros: ['Beginner friendly', 'Good examples'],
+        cons: ['Could use more advanced topics'],
+        isVisible: true,
+        isVerified: true,
+        helpful: 8,
+        unhelpful: 1,
+        createdAt: new Date('2024-01-20'),
+        updatedAt: new Date('2024-01-20'),
+      },
+      {
+        id: randomUUID(),
+        userId: student1.id,
+        user: student1,
+        courseId: course2.id,
+        course: course2,
+        rating: 5,
+        title: 'TypeScript mastery achieved',
+        comment: 'This advanced TypeScript course was exactly what I needed. The patterns and best practices covered are invaluable.',
+        pros: ['Deep technical content', 'Real-world examples', 'Expert instruction'],
+        cons: ['Assumes prior TypeScript knowledge'],
+        isVisible: true,
+        isVerified: true,
+        helpful: 15,
+        unhelpful: 0,
+        createdAt: new Date('2024-01-25'),
+        updatedAt: new Date('2024-01-25'),
+      },
+    ];
+
+    await dataSource.getRepository(Review).save(reviews);
+    console.log('✅ Reviews seeded successfully');
 
     // Create sample enrollments
     console.log('📝 Creating enrollments...');
@@ -196,7 +314,9 @@ async function seedDatabase() {
     console.log('\n🎉 Database seeding completed successfully!');
     console.log('\n📊 Seeding Summary:');
     console.log(`   👥 ${savedUsers.length} Users created`);
+    console.log(`   📂 ${savedCategories.length} Categories created`);
     console.log(`   📚 ${savedCourses.length} Courses created`);
+    console.log(`   ⭐ ${reviews.length} Reviews created`);
     console.log(`   📝 ${enrollments.length} Enrollments created`);
     console.log('   💳 Ready for payments');
     console.log('   📊 Ready for progress tracking');
