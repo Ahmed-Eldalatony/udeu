@@ -1,156 +1,125 @@
 import { Injectable, NotFoundException, ForbiddenException } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { Review } from '../../entities/review.entity';
+import { User } from '../../entities/user.entity';
 import { CreateReviewDto } from './dto/create-review.dto';
 import { UpdateReviewDto } from './dto/update-review.dto';
-import { User } from '../../entities/user.entity';
 
 @Injectable()
 export class ReviewsService {
-  // Mock data for now - replace with actual database operations
-  private reviews = [
-    {
-      id: '1',
-      userId: '1',
-      courseId: '1',
-      rating: 5,
-      title: 'Excellent course!',
-      comment: 'This course exceeded my expectations. The instructor was very knowledgeable and the content was well-structured.',
-      pros: ['Clear explanations', 'Practical examples', 'Good pace'],
-      cons: ['Some sections could be more detailed'],
-      isVisible: true,
-      isVerified: true,
-      helpful: 12,
-      unhelpful: 2,
-      createdAt: new Date('2024-01-15'),
-      updatedAt: new Date('2024-01-15'),
-    },
-    {
-      id: '2',
-      userId: '2',
-      courseId: '1',
-      rating: 4,
-      title: 'Great learning experience',
-      comment: 'I learned a lot from this course. Would recommend to beginners.',
-      pros: ['Beginner friendly', 'Good examples'],
-      cons: ['Could use more advanced topics'],
-      isVisible: true,
-      isVerified: true,
-      helpful: 8,
-      unhelpful: 1,
-      createdAt: new Date('2024-01-20'),
-      updatedAt: new Date('2024-01-20'),
-    },
-  ];
+  constructor(
+    @InjectRepository(Review)
+    private reviewsRepository: Repository<Review>,
+  ) {}
 
-  create(createReviewDto: CreateReviewDto, user: User) {
-    const newReview = {
-      id: (this.reviews.length + 1).toString(),
-      userId: user.id,
+  async create(createReviewDto: CreateReviewDto, user: User): Promise<Review> {
+    const review = this.reviewsRepository.create({
       ...createReviewDto,
+      userId: user.id,
+      user,
       isVisible: true,
       isVerified: false, // Would check if user purchased the course
       helpful: 0,
       unhelpful: 0,
-      createdAt: new Date(),
-      updatedAt: new Date(),
-    };
+    });
 
-    this.reviews.push(newReview);
-    return newReview;
+    return this.reviewsRepository.save(review);
   }
 
-  findAll(query: any) {
-    let filteredReviews = [...this.reviews];
+  async findAll(query: any): Promise<Review[]> {
+    const queryBuilder = this.reviewsRepository
+      .createQueryBuilder('review')
+      .leftJoinAndSelect('review.user', 'user')
+      .leftJoinAndSelect('review.course', 'course');
 
     if (query.courseId) {
-      filteredReviews = filteredReviews.filter(r => r.courseId === query.courseId);
+      queryBuilder.andWhere('review.courseId = :courseId', { courseId: query.courseId });
     }
 
     if (query.userId) {
-      filteredReviews = filteredReviews.filter(r => r.userId === query.userId);
+      queryBuilder.andWhere('review.userId = :userId', { userId: query.userId });
     }
 
     if (query.minRating) {
-      filteredReviews = filteredReviews.filter(r => r.rating >= parseInt(query.minRating));
+      queryBuilder.andWhere('review.rating >= :minRating', { minRating: parseInt(query.minRating) });
     }
 
     if (query.isVisible !== undefined) {
-      filteredReviews = filteredReviews.filter(r => r.isVisible === (query.isVisible === 'true'));
+      queryBuilder.andWhere('review.isVisible = :isVisible', { isVisible: query.isVisible === 'true' });
     }
 
     // Sorting
     if (query.sortBy) {
-      filteredReviews.sort((a, b) => {
-        let aValue = a[query.sortBy];
-        let bValue = b[query.sortBy];
-
-        if (query.sortOrder === 'asc') {
-          return aValue > bValue ? 1 : -1;
-        } else {
-          return aValue < bValue ? 1 : -1;
-        }
-      });
+      const order = query.sortOrder === 'asc' ? 'ASC' : 'DESC';
+      queryBuilder.orderBy(`review.${query.sortBy}`, order);
+    } else {
+      queryBuilder.orderBy('review.createdAt', 'DESC');
     }
 
-    return filteredReviews;
+    return queryBuilder.getMany();
   }
 
-  findByCourse(courseId: string) {
-    return this.reviews.filter(review => review.courseId === courseId && review.isVisible);
+  async findByCourse(courseId: string): Promise<Review[]> {
+    return this.reviewsRepository.find({
+      where: {
+        courseId,
+        isVisible: true,
+      },
+      relations: ['user'],
+      order: { createdAt: 'DESC' },
+    });
   }
 
-  findByUser(userId: string, requestingUser: User) {
+  async findByUser(userId: string, requestingUser: User): Promise<Review[]> {
     if (requestingUser.id !== userId) {
       throw new ForbiddenException('You can only view your own reviews');
     }
-    return this.reviews.filter(review => review.userId === userId);
+
+    return this.reviewsRepository.find({
+      where: { userId },
+      relations: ['course'],
+      order: { createdAt: 'DESC' },
+    });
   }
 
-  findOne(id: string) {
-    const review = this.reviews.find(r => r.id === id);
+  async findOne(id: string): Promise<Review> {
+    const review = await this.reviewsRepository.findOne({
+      where: { id },
+      relations: ['user', 'course'],
+    });
+
     if (!review) {
       throw new NotFoundException('Review not found');
     }
+
     return review;
   }
 
-  update(id: string, updateReviewDto: UpdateReviewDto, user: User) {
-    const reviewIndex = this.reviews.findIndex(r => r.id === id);
-    if (reviewIndex === -1) {
-      throw new NotFoundException('Review not found');
-    }
+  async update(id: string, updateReviewDto: UpdateReviewDto, user: User): Promise<Review> {
+    const review = await this.findOne(id);
 
-    const review = this.reviews[reviewIndex];
     if (review.userId !== user.id) {
       throw new ForbiddenException('You can only update your own reviews');
     }
 
-    this.reviews[reviewIndex] = {
-      ...review,
-      ...updateReviewDto,
-      updatedAt: new Date(),
-    };
-
-    return this.reviews[reviewIndex];
+    Object.assign(review, updateReviewDto);
+    return this.reviewsRepository.save(review);
   }
 
-  remove(id: string, user: User) {
-    const reviewIndex = this.reviews.findIndex(r => r.id === id);
-    if (reviewIndex === -1) {
-      throw new NotFoundException('Review not found');
-    }
+  async remove(id: string, user: User): Promise<Review> {
+    const review = await this.findOne(id);
 
-    const review = this.reviews[reviewIndex];
     if (review.userId !== user.id) {
       throw new ForbiddenException('You can only delete your own reviews');
     }
 
-    const deletedReview = this.reviews[reviewIndex];
-    this.reviews.splice(reviewIndex, 1);
-    return deletedReview;
+    await this.reviewsRepository.remove(review);
+    return review;
   }
 
-  vote(id: string, type: 'helpful' | 'unhelpful', user: User) {
-    const review = this.findOne(id);
+  async vote(id: string, type: 'helpful' | 'unhelpful', user: User): Promise<Review> {
+    const review = await this.findOne(id);
 
     if (type === 'helpful') {
       review.helpful += 1;
@@ -158,12 +127,11 @@ export class ReviewsService {
       review.unhelpful += 1;
     }
 
-    review.updatedAt = new Date();
-    return review;
+    return this.reviewsRepository.save(review);
   }
 
-  getCourseStats(courseId: string) {
-    const courseReviews = this.findByCourse(courseId);
+  async getCourseStats(courseId: string) {
+    const courseReviews = await this.findByCourse(courseId);
 
     if (courseReviews.length === 0) {
       return {
