@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { CategoryManagement } from './category-management';
 import { PaymentDashboard } from './payment-dashboard';
+import { UserManagement } from './user-management';
 import { Button } from '../ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
 import {
@@ -53,7 +54,7 @@ export const AdminDashboard: React.FC = () => {
       id: 'users',
       title: 'Users',
       icon: <Users className="h-5 w-5" />,
-      component: <div className="p-4 text-center text-muted-foreground">User management coming soon...</div>,
+      component: <UserManagement />,
       description: 'User accounts and permissions'
     },
     {
@@ -98,8 +99,8 @@ export const AdminDashboard: React.FC = () => {
                   key={section.id}
                   onClick={() => setActiveSection(section.id)}
                   className={`w-full flex items-center px-3 py-2 text-sm font-medium rounded-md transition-colors ${activeSection === section.id
-                      ? 'bg-blue-50 text-blue-700 border-r-2 border-blue-700'
-                      : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
+                    ? 'bg-blue-50 text-blue-700 border-r-2 border-blue-700'
+                    : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
                     }`}
                 >
                   <span className="mr-3">{section.icon}</span>
