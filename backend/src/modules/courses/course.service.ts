@@ -1,7 +1,7 @@
 import { Injectable, NotFoundException, ForbiddenException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { Course, CourseStatus } from '../../entities/course.entity';
+import { Course, CourseStatus, CourseLevel } from '../../entities/course.entity';
 import { User, UserRole } from '../../entities/user.entity';
 import { CategoriesService } from '../categories/categories.service';
 import { CreateCourseDto } from './dto/create-course.dto';
@@ -28,7 +28,7 @@ export class CourseService {
       }
     }
 
-    // Create the course entity
+    // Create the course entity with only the valid properties
     const course = this.courseRepository.create({
       title: createCourseDto.title,
       description: createCourseDto.description,
@@ -36,21 +36,24 @@ export class CourseService {
       thumbnailUrl: createCourseDto.thumbnailUrl,
       previewVideoUrl: createCourseDto.previewVideoUrl,
       instructorId: instructor.id,
+      categoryId: categoryId,
       objectives: JSON.stringify(createCourseDto.objectives || []),
       requirements: JSON.stringify(createCourseDto.requirements || []),
       targetAudience: JSON.stringify(createCourseDto.targetAudience || []),
-      level: createCourseDto.level,
+      level: createCourseDto.level || CourseLevel.ALL_LEVELS,
       status: createCourseDto.status || CourseStatus.DRAFT,
       price: createCourseDto.price || 0,
       salePrice: createCourseDto.salePrice,
-      categoryId: categoryId,
       tags: JSON.stringify(createCourseDto.tags || []),
       totalDuration: createCourseDto.totalDuration || 0,
       totalLectures: createCourseDto.totalLectures || 0,
       isFree: createCourseDto.isFree || false,
+      isPublished: false,
       welcomeMessage: createCourseDto.welcomeMessage,
       congratulationsMessage: createCourseDto.congratulationsMessage,
       allowComments: createCourseDto.allowComments !== false, // Default to true
+      featured: false,
+      popularityScore: 0,
     });
 
     return this.courseRepository.save(course);
