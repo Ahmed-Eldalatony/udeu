@@ -117,7 +117,7 @@ export const CourseDetailsPage: React.FC = () => {
       <Layout>
         <ErrorMessage
           title="Failed to load course"
-          message={courseError || 'Unable to load course details'}
+          message={typeof courseError === 'string' ? courseError : 'Unable to load course details'}
           onRetry={() => id && loadCourse(id)}
         />
       </Layout>
@@ -326,7 +326,7 @@ export const CourseDetailsPage: React.FC = () => {
                   {/* Enrollment Error */}
                   {enrollmentError && (
                     <div className="mb-4 p-3 bg-red-50 border border-red-200 rounded text-red-700 text-sm">
-                      {enrollmentError}
+                      {typeof enrollmentError === 'string' ? enrollmentError : 'Enrollment failed'}
                     </div>
                   )}
 

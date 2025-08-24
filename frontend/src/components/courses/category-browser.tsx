@@ -58,7 +58,7 @@ export const CategoryBrowser: React.FC<CategoryBrowserProps> = ({ onCourseSelect
         const topLevelCategories = response.data.filter(cat => !cat.parentId);
         const hierarchicalCategories = topLevelCategories.map(category => ({
           ...category,
-          subcategories: response.data.filter(sub => sub.parentId === category.id)
+          subcategories: response.data?.filter(sub => sub.parentId === category.id) || []
         }));
         setCategories(hierarchicalCategories);
       }

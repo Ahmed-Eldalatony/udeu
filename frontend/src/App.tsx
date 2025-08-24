@@ -1,4 +1,4 @@
-import { Routes, Route, BrowserRouter } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import { AuthProvider } from './contexts/AuthContext';
 import { CartProvider } from './contexts/CartContext';
 import { GlobalStateProvider } from './contexts/GlobalStateContext';
@@ -25,108 +25,106 @@ function AppContent() {
   const { toasts, removeToast } = useError();
 
   return (
-    <BrowserRouter>
-      <AdvancedErrorBoundary
-        enableReporting={true}
-        showDetails={process.env.NODE_ENV === 'development'}
-        maxRetryAttempts={3}
-        resetTimeout={30000}
-        onError={(error, errorInfo, errorType) => {
-          // Custom error handling - could send to analytics service
-          console.error('App-level error:', { error, errorInfo, errorType });
-        }}
-      >
-        <LoadingProvider>
-          <GlobalStateProvider>
-            <AuthProvider>
-              <CartProvider>
-                <GlobalLoadingOverlay />
-                <ToastContainer toasts={toasts} onClose={removeToast} />
-                <div className="min-h-screen bg-gray-50">
-                  <Routes>
-                    <Route path="/" element={
-                      <RouteErrorBoundary route="Homepage">
-                        <Homepage />
+    <AdvancedErrorBoundary
+      enableReporting={true}
+      showDetails={process.env.NODE_ENV === 'development'}
+      maxRetryAttempts={3}
+      resetTimeout={30000}
+      onError={(error, errorInfo, errorType) => {
+        // Custom error handling - could send to analytics service
+        console.error('App-level error:', { error, errorInfo, errorType });
+      }}
+    >
+      <LoadingProvider>
+        <GlobalStateProvider>
+          <AuthProvider>
+            <CartProvider>
+              <GlobalLoadingOverlay />
+              <ToastContainer toasts={toasts} onClose={removeToast} />
+              <div className="min-h-screen bg-gray-50">
+                <Routes>
+                  <Route path="/" element={
+                    <RouteErrorBoundary route="Homepage">
+                      <Homepage />
+                    </RouteErrorBoundary>
+                  } />
+                  <Route path="/login" element={
+                    <ProtectedRoute requireAuth={false}>
+                      <RouteErrorBoundary route="Login">
+                        <LoginPage />
                       </RouteErrorBoundary>
-                    } />
-                    <Route path="/login" element={
-                      <ProtectedRoute requireAuth={false}>
-                        <RouteErrorBoundary route="Login">
-                          <LoginPage />
-                        </RouteErrorBoundary>
-                      </ProtectedRoute>
-                    } />
-                    <Route path="/register" element={
-                      <ProtectedRoute requireAuth={false}>
-                        <RouteErrorBoundary route="Register">
-                          <RegisterPage />
-                        </RouteErrorBoundary>
-                      </ProtectedRoute>
-                    } />
-                    <Route path="/courses" element={
-                      <RouteErrorBoundary route="Courses">
-                        <CoursesPage />
+                    </ProtectedRoute>
+                  } />
+                  <Route path="/register" element={
+                    <ProtectedRoute requireAuth={false}>
+                      <RouteErrorBoundary route="Register">
+                        <RegisterPage />
                       </RouteErrorBoundary>
-                    } />
-                    <Route path="/courses/:id" element={
-                      <RouteErrorBoundary route="CourseDetails">
-                        <CourseDetailsPage />
+                    </ProtectedRoute>
+                  } />
+                  <Route path="/courses" element={
+                    <RouteErrorBoundary route="Courses">
+                      <CoursesPage />
+                    </RouteErrorBoundary>
+                  } />
+                  <Route path="/courses/:id" element={
+                    <RouteErrorBoundary route="CourseDetails">
+                      <CourseDetailsPage />
+                    </RouteErrorBoundary>
+                  } />
+                  <Route path="/cart" element={
+                    <RouteErrorBoundary route="Cart">
+                      <CartPage />
+                    </RouteErrorBoundary>
+                  } />
+                  <Route path="/dashboard" element={
+                    <ProtectedRoute>
+                      <RouteErrorBoundary route="Dashboard">
+                        <DashboardPage />
                       </RouteErrorBoundary>
-                    } />
-                    <Route path="/cart" element={
-                      <RouteErrorBoundary route="Cart">
-                        <CartPage />
+                    </ProtectedRoute>
+                  } />
+                  <Route path="/instructor-dashboard" element={
+                    <ProtectedRoute requireInstructor={true}>
+                      <RouteErrorBoundary route="InstructorDashboard">
+                        <InstructorDashboard />
                       </RouteErrorBoundary>
-                    } />
-                    <Route path="/dashboard" element={
-                      <ProtectedRoute>
-                        <RouteErrorBoundary route="Dashboard">
-                          <DashboardPage />
-                        </RouteErrorBoundary>
-                      </ProtectedRoute>
-                    } />
-                    <Route path="/instructor-dashboard" element={
-                      <ProtectedRoute requireInstructor={true}>
-                        <RouteErrorBoundary route="InstructorDashboard">
-                          <InstructorDashboard />
-                        </RouteErrorBoundary>
-                      </ProtectedRoute>
-                    } />
-                    <Route path="/admin" element={
-                      <ProtectedRoute requireAdmin={true}>
-                        <RouteErrorBoundary route="Admin">
-                          <AdminPage />
-                        </RouteErrorBoundary>
-                      </ProtectedRoute>
-                    } />
-                    <Route path="/error-test" element={
-                      <RouteErrorBoundary route="ErrorTest">
-                        <ErrorTestComponent />
+                    </ProtectedRoute>
+                  } />
+                  <Route path="/admin" element={
+                    <ProtectedRoute requireAdmin={true}>
+                      <RouteErrorBoundary route="Admin">
+                        <AdminPage />
                       </RouteErrorBoundary>
-                    } />
-                    <Route path="/error-handling-demo" element={
-                      <RouteErrorBoundary route="ErrorHandlingDemo">
-                        <ErrorHandlingDemo />
-                      </RouteErrorBoundary>
-                    } />
-                    <Route path="/logout-test" element={
-                      <RouteErrorBoundary route="LogoutTest">
-                        <LogoutTestComponent />
-                      </RouteErrorBoundary>
-                    } />
-                    <Route path="*" element={
-                      <RouteErrorBoundary route="NotFound">
-                        <NotFoundPage />
-                      </RouteErrorBoundary>
-                    } />
-                  </Routes>
-                </div>
-              </CartProvider>
-            </AuthProvider>
-          </GlobalStateProvider>
-        </LoadingProvider>
-      </AdvancedErrorBoundary>
-    </BrowserRouter>
+                    </ProtectedRoute>
+                  } />
+                  <Route path="/error-test" element={
+                    <RouteErrorBoundary route="ErrorTest">
+                      <ErrorTestComponent />
+                    </RouteErrorBoundary>
+                  } />
+                  <Route path="/error-handling-demo" element={
+                    <RouteErrorBoundary route="ErrorHandlingDemo">
+                      <ErrorHandlingDemo />
+                    </RouteErrorBoundary>
+                  } />
+                  <Route path="/logout-test" element={
+                    <RouteErrorBoundary route="LogoutTest">
+                      <LogoutTestComponent />
+                    </RouteErrorBoundary>
+                  } />
+                  <Route path="*" element={
+                    <RouteErrorBoundary route="NotFound">
+                      <NotFoundPage />
+                    </RouteErrorBoundary>
+                  } />
+                </Routes>
+              </div>
+            </CartProvider>
+          </AuthProvider>
+        </GlobalStateProvider>
+      </LoadingProvider>
+    </AdvancedErrorBoundary>
   );
 }
 

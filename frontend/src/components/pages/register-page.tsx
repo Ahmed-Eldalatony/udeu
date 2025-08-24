@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Layout } from '../layout/layout';
 import { LoadingButton } from '../ui/loading-state';
 import { ValidatedInput } from '../ui/validated-input';
 import { PasswordStrengthIndicator } from '../ui/password-strength-indicator';
 import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
-import { ErrorMessage } from '../ui/error-message';
 import { useAuth } from '../../contexts/AuthContext';
 import { useFormValidation, usePasswordStrength } from '../../hooks/useFormValidation';
 import { validationRules } from '../../lib/validation';

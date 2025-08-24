@@ -20,16 +20,14 @@ export const Layout: React.FC<LayoutProps> = ({
   showNavbar = true,
   showFooter = true,
   onSearch,
-  user,
-  cartItemCount,
 }) => {
   return (
     <div className="min-h-screen flex flex-col">
       {showNavbar && (
         <Navbar
           onSearch={onSearch}
-          user={user}
-          cartItemCount={cartItemCount}
+        // user={user}
+        // cartItemCount={cartItemCount}
         />
       )}
 

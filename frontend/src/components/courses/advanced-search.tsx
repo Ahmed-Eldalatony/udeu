@@ -393,7 +393,7 @@ export const AdvancedSearch: React.FC = () => {
 
                   {course.category && (
                     <Badge variant="secondary" className="mt-2">
-                      {typeof course.category === 'string' ? course.category : course.category.name}
+                      {typeof course.category === 'string' ? course.category : course.category}
                     </Badge>
                   )}
                 </CardContent>

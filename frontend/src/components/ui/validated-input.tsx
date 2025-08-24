@@ -74,12 +74,12 @@ export const ValidatedInput: React.FC<ValidatedInputProps> = ({
     return null;
   };
 
-  const handleFocus = (e: React.FocusEvent<HTMLInputElement>) => {
+  const handleFocus = () => {
     setIsFocused(true);
     onFocus?.();
   };
 
-  const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+  const handleBlur = () => {
     setIsFocused(false);
     onBlur?.();
   };

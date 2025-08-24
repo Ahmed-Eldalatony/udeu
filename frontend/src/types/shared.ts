@@ -269,4 +269,4 @@ export type Prettify<T> = {
 export type ReactNode = any;
 export type MouseEvent = any;
 export type FormEvent = any;
-export type ChangeEvent<T = any> = any;
+export type ChangeEvent = any;

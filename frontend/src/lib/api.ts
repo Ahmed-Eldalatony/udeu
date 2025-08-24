@@ -1,5 +1,5 @@
 // API Service Layer for Backend Communication
-import type { ApiResponse, User, Course, Enrollment, Payment, AuthTokens, Progress } from '../types/shared';
+import type { ApiResponse, User, Course, Enrollment, Payment } from '../types/shared';
 
 const API_BASE_URL = 'http://localhost:3000'; // NestJS default port
 
@@ -270,7 +270,7 @@ export const paymentsAPI = {
   },
 
   // Handle payment webhooks (for external payment providers)
-  handleWebhook: async (provider: string, payload: any, query?: any): Promise<ApiResponse<any>> => {
+  handleWebhook: async (provider: string, payload: any): Promise<ApiResponse<any>> => {
     return apiService.post<any>(`/payments/webhook/${provider}`, payload);
   },
 };

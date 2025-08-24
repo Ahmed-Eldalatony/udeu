@@ -146,7 +146,7 @@ export function useApi<T>(
   const {
     initialLoadingMessage = 'Loading...',
     showLoadingMessage = true,
-    retryOnError = false,
+    // retryOnError = false,
     maxRetries = 3,
     retryDelay = 1000,
     timeout = 30000,

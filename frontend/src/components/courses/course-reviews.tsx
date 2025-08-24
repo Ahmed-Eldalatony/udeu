@@ -269,8 +269,8 @@ export const CourseReviews: React.FC<CourseReviewsProps> = ({ courseId }) => {
                     <Star
                       key={star}
                       className={`h-4 w-4 ${star <= Math.floor(stats.averageRating)
-                          ? 'fill-yellow-400 text-yellow-400'
-                          : 'text-gray-300'
+                        ? 'fill-yellow-400 text-yellow-400'
+                        : 'text-gray-300'
                         }`}
                     />
                   ))}
@@ -338,8 +338,8 @@ export const CourseReviews: React.FC<CourseReviewsProps> = ({ courseId }) => {
                     >
                       <Star
                         className={`h-6 w-6 ${star <= formData.rating
-                            ? 'fill-yellow-400 text-yellow-400'
-                            : 'text-gray-300'
+                          ? 'fill-yellow-400 text-yellow-400'
+                          : 'text-gray-300'
                           }`}
                       />
                     </button>
@@ -470,8 +470,8 @@ export const CourseReviews: React.FC<CourseReviewsProps> = ({ courseId }) => {
                           <Star
                             key={star}
                             className={`h-4 w-4 ${star <= review.rating
-                                ? 'fill-yellow-400 text-yellow-400'
-                                : 'text-gray-300'
+                              ? 'fill-yellow-400 text-yellow-400'
+                              : 'text-gray-300'
                               }`}
                           />
                         ))}
@@ -514,7 +514,7 @@ export const CourseReviews: React.FC<CourseReviewsProps> = ({ courseId }) => {
               )}
 
               {/* Pros and Cons */}
-              {(review.pros?.length > 0 || review.cons?.length > 0) && (
+              {((review.pros?.length || 0) > 0 || (review.cons?.length || 0) > 0) && (
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                   {review.pros && review.pros.length > 0 && (
                     <div>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { AlertTriangle, RefreshCw, Wifi, Clock, Shield, Server, Bug } from 'lucide-react';
+import { AlertTriangle, RefreshCw, Wifi, Clock, Shield, Server } from 'lucide-react';
 import { Button } from './button';
 import { cn } from '@/lib/utils';
 import type { ApiError } from '@/hooks/useApi';

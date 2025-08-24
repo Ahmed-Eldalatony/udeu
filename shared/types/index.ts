@@ -25,8 +25,8 @@ export interface User {
    isEmailVerified: boolean;
    isTwoFactorEnabled: boolean; // Added to match backend entity
    isActive: boolean;
-   createdAt: Date;
-   updatedAt: Date;
+   createdAt: string; // Changed to string for API compatibility
+   updatedAt: string; // Changed to string for API compatibility
  }
 
 // Course Types
@@ -186,37 +186,37 @@ export enum Currency {
 }
 
 export interface Payment {
-  id: string;
-  user: User;
-  userId: string;
-  course?: Course;
-  courseId?: string;
-  status: PaymentStatus;
-  paymentMethod: PaymentMethod;
-  currency: Currency;
-  amount: number;
-  fee: number; // Platform fee
-  tax: number;
-  netAmount: number; // Amount after fees and taxes
-  transactionId?: string; // External payment processor ID
-  paymentIntentId?: string; // Stripe payment intent ID
-  paymentMetadata?: any; // Additional payment data
-  description?: string;
-  invoiceUrl?: string;
-  receiptUrl?: string;
-  isRefunded: boolean;
-  refundedAmount: number;
-  refundedAt?: Date;
-  refundReason?: string;
-  isSubscription: boolean;
-  subscriptionId?: string;
-  billingCycle?: string; // monthly, yearly
-  customerInfo?: any; // Billing address, card details (masked)
-  errorDetails?: any; // Error information if payment failed
-  isActive: boolean;
-  createdAt: Date;
-  updatedAt: Date;
-}
+   id: string;
+   user: User;
+   userId: string;
+   course?: Course;
+   courseId?: string;
+   status: PaymentStatus | string; // Allow both enum and string for API compatibility
+   paymentMethod: PaymentMethod | string; // Allow both enum and string for API compatibility
+   currency: Currency | string; // Allow both enum and string for API compatibility
+   amount: number;
+   fee: number; // Platform fee
+   tax: number;
+   netAmount: number; // Amount after fees and taxes
+   transactionId?: string; // External payment processor ID
+   paymentIntentId?: string; // Stripe payment intent ID
+   paymentMetadata?: Record<string, any>; // Additional payment data
+   description?: string;
+   invoiceUrl?: string;
+   receiptUrl?: string;
+   isRefunded: boolean;
+   refundedAmount: number;
+   refundedAt?: string; // Changed to string for API compatibility
+   refundReason?: string;
+   isSubscription: boolean;
+   subscriptionId?: string;
+   billingCycle?: string; // monthly, yearly
+   customerInfo?: Record<string, any>; // Billing address, card details (masked)
+   errorDetails?: Record<string, any>; // Error information if payment failed
+   isActive: boolean;
+   createdAt: string; // Changed to string for API compatibility
+   updatedAt: string; // Changed to string for API compatibility
+ }
 
 // API Response Types
 export interface ApiResponse<T> {

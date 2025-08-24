@@ -69,7 +69,7 @@ export const DashboardPage: React.FC = () => {
   });
 
   const {
-    data: userProfile,
+    // data: userProfile,
     error: profileError,
     isLoading: loadingProfile,
     execute: loadProfile
@@ -119,7 +119,7 @@ export const DashboardPage: React.FC = () => {
       <Layout>
         <ErrorMessage
           title="Failed to load dashboard"
-          message={enrollmentsError || profileError || 'Unable to load your dashboard data'}
+          message={typeof enrollmentsError === 'string' ? enrollmentsError : typeof profileError === 'string' ? profileError : 'Unable to load your dashboard data'}
           onRetry={() => {
             loadEnrollments();
             loadProfile();

@@ -1,5 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { usersAPI } from '../../lib/api';
+
+// Extend usersAPI to include delete method
+const extendedUsersAPI = {
+  ...usersAPI,
+  delete: async (id: string) => {
+    const response = await fetch(`/api/users/${id}`, {
+      method: 'DELETE',
+    });
+    return response.json();
+  }
+};
 import { Button } from '../ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
 import { Input } from '../ui/input';
@@ -131,7 +142,7 @@ export const UserManagement: React.FC = () => {
     }
 
     try {
-      await usersAPI.delete(userId);
+      await extendedUsersAPI.delete(userId);
       toast({
         title: 'Success',
         description: 'User deleted successfully',

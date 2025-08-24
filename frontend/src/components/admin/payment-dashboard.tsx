@@ -54,7 +54,7 @@ export const PaymentDashboard: React.FC = () => {
       ]);
 
       if (paymentsResponse.success && paymentsResponse.data) {
-        setPayments(paymentsResponse.data);
+        setPayments((paymentsResponse.data || []) as any);
       }
 
       if (statsResponse.success && statsResponse.data) {

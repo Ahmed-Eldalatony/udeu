@@ -5,7 +5,6 @@ import { Button } from './button';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from './sheet';
 import {
   Menu,
-  X,
   Home,
   BookOpen,
   User,
@@ -46,7 +45,7 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({ onSearch }) => {
 
   return (
     <Sheet open={isOpen} onOpenChange={setIsOpen}>
-      <SheetTrigger asChild>
+      <SheetTrigger>
         <Button variant="ghost" size="sm" className="md:hidden">
           <Menu className="w-5 h-5" />
         </Button>
